@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+@layer components {
+    .input-primary {
+        @apply px-3 py-2 border w-full rounded-full focus:outline-none focus:ring-1 focus:ring-primary focus:border placeholder:italic placeholder:text-secondary block mt-1 text-sm;
+    }
+
+    .span-required {
+        @apply after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm text-slate-700 font-bold;
+    }
+
+    .btn-primary {
+        @apply bg-primary py-2 rounded-full font-bold text-white w-full hover:opacity-90;
+    }
+}
+
+/* Pagination Start */
+.slider .splide .container-pagination {
+    @apply hidden lg:flex lg:mx-auto;
+}
+
+.slider .splide .container-pagination > li {
+    @apply lg:bg-white opacity-75 p-0.5 flex items-center;
+}
+
+.slider .splide .container-pagination > li:first-child {
+    @apply rounded-l-lg;
+}
+
+.slider .splide .container-pagination > li:last-child {
+    @apply rounded-r-lg;
+}
+
+.slider .splide .btn-pagination {
+    @apply bg-secondary font-bold focus:outline-none;
+}
+
+.slider .splide .btn-pagination.is-active {
+    @apply bg-primary focus:outline-none;
+}
+/* Pagination End */
+
+/* Navigation Start */
+.slider ul > .is-prev {
+    @apply opacity-50 flex items-center;
+}
+
+.slider ul > .is-next {
+    @apply opacity-50 flex items-center;
+}
+
+.slider ul > .is-prev img {
+    @apply h-[95%];
+}
+
+.slider ul > .is-next img {
+    @apply h-[95%];
+}
+/* Navigation End */
