@@ -6,12 +6,23 @@ import CategoryNavbar from '../category/CategoryNavbar.vue'
 import LogoNavbar from './LogoNavbar.vue'
 import ContactComponent from './ContactComponent.vue'
 import ListItemCart from '../cart/ListItemCart.vue'
+import { ref, watchEffect } from 'vue'
 
 const userStore = useUserStore()
 const cartStore = useCartStore()
 
 const { isAuthenticated, user } = storeToRefs(userStore)
 const { logoutUser } = userStore
+
+const itemCount = ref([])
+
+watchEffect(() => {
+  if (cartStore.carts.length) {
+    setTimeout(() => {
+      itemCount.value = cartStore.carts[0].items
+    }, 2000)
+  }
+})
 </script>
 
 <template>
@@ -87,7 +98,7 @@ const { logoutUser } = userStore
                 clip-rule="evenodd"
               />
             </svg>
-            <span class="w-[22px] h-[22px] rounded-full absolute z-10 bg-danger flex items-center justify-center mx-auto -right-1 -top-1 text-white text-[11px] font-thin">{{ cartStore.carts.length }}</span>
+            <span class="w-[22px] h-[22px] rounded-full absolute z-10 bg-danger flex items-center justify-center mx-auto -right-1 -top-1 text-white text-[11px] font-thin">{{ itemCount.length }}</span>
           </router-link>
           <!-- Cart items Start -->
           <ListItemCart />

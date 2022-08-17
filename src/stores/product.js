@@ -23,13 +23,13 @@ export const useProductStore = defineStore('useProductStore', {
       const selected = this.products.filter(e => {
         return e.slug === slug
       })
-      const isItemExist = cartStore.carts.filter(e => {
+      const isItemExist = cartStore.carts[0].items.filter(e => {
         return e.slug === slug
       })
       if (isItemExist.length) {
-        for (let i = 0; i < cartStore.carts.length; i++) {
-          if (cartStore.carts[i].slug === slug) {
-            this.item.quantity = cartStore.carts[i].quantity
+        for (let i = 0; i < cartStore.carts[0].items.length; i++) {
+          if (cartStore.carts[0].items[i].slug === slug) {
+            this.item.quantity = cartStore.carts[0].items[i].quantity
           }
         }
       }

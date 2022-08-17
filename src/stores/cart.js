@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import api from '../apis/cart'
 import { useProductStore } from './product'
 import { useUserStore } from './user'
@@ -10,12 +10,11 @@ export const useCartStore = defineStore('cartStore', () => {
   const userStore = useUserStore()
   const uiStore = useUiStore()
   const carts = ref([])
+  const cartIsExist = computed(() => {
+    return this.carts.length
+  })
 
   function addItemToCart () {
-    // const items = JSON.parse(localStorage.getItem('cart_items'))
-    // if (items) {
-    //   this.carts = items
-    // }
     if (!userStore.isAuthenticated) {
       return uiStore.redirectLogin()
     }
@@ -26,42 +25,33 @@ export const useCartStore = defineStore('cartStore', () => {
       slug: productStore.singleProduct.slug,
       price: productStore.singleProduct.price,
       weight: productStore.singleProduct.weight,
-      quantity: productStore.singleProduct.quantity
+      quantity: productStore.singleProduct.quantity,
+      tax: productStore.singleProduct.tax
     }
 
     return api.saveItems(item).then(response => {
-      // const res = JSON.parse(response.data.data)
-      const res = response
-      console.log(res)
-      // this.carts.push(JSON.parse(res))
-      // console.log(response.data.data)
+      const res = response.data.data
+      this.carts = res
     })
-
-    // const isItemExist = this.carts.filter(e => {
-    //   return e.id === productStore.singleProduct.id
-    // })
-
-    // if (isItemExist.length) {
-    //   for (let i = 0; i < this.carts.length; i++) {
-    //     if (this.carts[i].id === productStore.singleProduct.id) {
-    //       this.carts[i].quantity = productStore.singleProduct.quantity
-    //     }
-    //   }
-    // } else {
-    //   this.carts.push(item)
-    // }
-    // localStorage.setItem('cart_items', JSON.stringify(this.carts))
-    // console.log(this.carts)
   }
 
   function setItemCarts () {
-    const items = JSON.parse(localStorage.getItem('cart_items'))
-    if (items) {
-      this.carts = items
-    } else {
-      this.carts = []
-    }
+    return api.getItems().then(response => {
+      const res = response.data.data
+      this.carts = res
+    })
   }
 
-  return { carts, addItemToCart, setItemCarts }
+  function deleteItemCart (id) {
+    const data = { productId: id }
+    return api.deleteItem(data).then(response => {
+      if (response.status === 204) {
+        for (let i = 0; this.carts[0].items.length; i++) {
+          this.carts[0].items.splice(i, 1)
+        }
+      }
+    })
+  }
+
+  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist }
 })
