@@ -9,7 +9,7 @@ const ui = useUiStore()
     v-show="ui.loading"
     class="loading"
   >
-    <div class="fixed inset-0 w-full h-full opacity-50 bg-black z-20" />
+    <div class="fixed inset-0 w-full h-full opacity-50 bg-black z-50" />
     <div class="fixed inset-0 w-full h-full flex justify-center items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -99,7 +99,10 @@ watchEffect(() => {
             <div class="py-2 overflow-hidden lg:border-t border-cloudy lg:py-4 hidden lg:flex">
               <div class="flex py-2 justify-between w-full px-2 items-center">
                 <form class="flex items-center space-x-1">
-                  <PrimaryButton :style="'text-xl font-bold flex items-center justify-center w-10'">
+                  <PrimaryButton
+                    :style="'text-xl font-bold flex items-center justify-center w-10'"
+                    @click="productStore.quantityDecrement()"
+                  >
                     -
                   </PrimaryButton>
                   <input
@@ -108,7 +111,10 @@ watchEffect(() => {
                     class="px-2 py-2 font-bold border-b border-secondary text-center w-20 focus:outline-none focus:border-primary"
                     @keypress="uiStore.isNumber($event)"
                   >
-                  <PrimaryButton :style="'text-xl font-bold flex items-center justify-center w-10'">
+                  <PrimaryButton
+                    :style="'text-xl font-bold flex items-center justify-center w-10'"
+                    @click="productStore.quantityIncrement()"
+                  >
                     +
                   </PrimaryButton>
                 </form>

@@ -9,6 +9,7 @@ export const useUiStore = defineStore('uiStore', () => {
 
   function redirectLogin () {
     route.push('/login')
+    this.loading = false
   }
 
   function isNumber (event) {

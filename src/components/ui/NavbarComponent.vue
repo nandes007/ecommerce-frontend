@@ -18,9 +18,9 @@ const itemCount = ref([])
 
 watchEffect(() => {
   if (cartStore.carts.length) {
-    setTimeout(() => {
-      itemCount.value = cartStore.carts[0].items
-    }, 2000)
+    itemCount.value = cartStore.carts[0].items
+  } else {
+    itemCount.value = cartStore.carts
   }
 })
 </script>

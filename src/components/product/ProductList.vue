@@ -1,21 +1,12 @@
 <script setup>
-// import { ref } from 'vue'
 import { useProductStore } from '../../stores/product.js'
+import { useUiStore } from '../../stores/ui.js'
 
 const productStore = useProductStore()
+const uiStore = useUiStore()
 
-// const products = ref([
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product1.jpg', flag: 'Terlaris' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product2.jpg', flag: 'Terbaru' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product3.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product4.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product5.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product6.jpg', flag: 'Terlaris' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product7.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product8.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product9.jpg', flag: '' },
-//   { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: '', flag: '' }
-// ])
+const { priceFormat } = uiStore
+
 </script>
 
 <template>
@@ -36,11 +27,6 @@ const productStore = useProductStore()
             <div v-if="product.flag">
               <span class="absolute bg-danger left-0 text-white px-2 text-[13px] rounded-br">Terlaris</span>
             </div>
-            <!-- <img
-              :src="product.product_images.length ? `${productStore.imgUrl + product.product_images[0].path}` : './src/assets/img/product/product1.jpg' "
-              class="mx-auto h-[60%]"
-              alt="Product Image"
-            > -->
             <img
               :src="productStore.isImageExists(product)"
               class="mx-auto h-[60%]"
@@ -50,8 +36,8 @@ const productStore = useProductStore()
               <p class="text-ellipsis overflow-hidden line-clamp-2">
                 {{ product.product_name }}
               </p>
-              <h5 class="font-bold pt-5">
-                {{ product.price }}
+              <h5 class="font-bold">
+                {{ priceFormat(product.price) }}
               </h5>
             </div>
           </router-link>

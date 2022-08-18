@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useUiStore } from './ui'
 import api from '../apis/user'
 import route from '../router'
+import { useCartStore } from './cart'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -28,11 +29,13 @@ export const useUserStore = defineStore('userStore', {
 
   actions: {
     getUser () {
+      const cartStore = useCartStore()
       if (this.isAuthenticated) {
         return api.getUser().then(response => {
           this.user.name = response.data.data.name
           this.user.email = response.data.data.email
           this.user.phone_number = response.data.data.phone_number
+          cartStore.setItemCarts()
         })
       }
     },
@@ -93,6 +96,7 @@ export const useUserStore = defineStore('userStore', {
     },
 
     logoutUser () {
+      const cartStore = useCartStore()
       this.errors = []
       const ui = useUiStore()
       ui.loading = true
@@ -100,6 +104,7 @@ export const useUserStore = defineStore('userStore', {
         localStorage.removeItem('_token')
         this.isAuthenticated = false
         ui.loading = false
+        cartStore.carts = []
       })
     },
 

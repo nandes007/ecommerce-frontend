@@ -15,6 +15,7 @@ export const useCartStore = defineStore('cartStore', () => {
   })
 
   function addItemToCart () {
+    uiStore.loading = true
     if (!userStore.isAuthenticated) {
       return uiStore.redirectLogin()
     }
@@ -32,6 +33,7 @@ export const useCartStore = defineStore('cartStore', () => {
     return api.saveItems(item).then(response => {
       const res = response.data.data
       this.carts = res
+      uiStore.loading = false
     })
   }
 
@@ -43,13 +45,17 @@ export const useCartStore = defineStore('cartStore', () => {
   }
 
   function deleteItemCart (id) {
+    uiStore.loading = true
     const data = { productId: id }
     return api.deleteItem(data).then(response => {
       if (response.status === 204) {
-        for (let i = 0; this.carts[0].items.length; i++) {
-          this.carts[0].items.splice(i, 1)
+        for (let i = 0; i < this.carts[0].items.length; i++) {
+          if (this.carts[0].items[i].productId === id) {
+            this.carts[0].items.splice(i, 1)
+          }
         }
       }
+      uiStore.loading = false
     })
   }
 
