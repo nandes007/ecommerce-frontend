@@ -7,7 +7,7 @@
     class="w-auto hidden lg:flex"
   >
     <img
-      src="../../assets/tokpedlogo.svg"
+      src="../../assets/img/myLogo.png"
       alt="logo"
     >
     <!-- <h5>Tokoca</h5> -->

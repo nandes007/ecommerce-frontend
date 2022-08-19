@@ -15,7 +15,7 @@ export default defineComponent({
       width: '100%',
       pagination: false,
       mediaQuery: 'min',
-      gap: '12px',
+      gap: '10px',
       breakpoints: {
         768: {
           perPage: 6,
@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <section class="flex justify-center py-10">
+  <section class="flex justify-center pt-6 lg:pt-6">
     <div class="container max-w-screen-xl flex justify-center group lg:px-4">
       <Splide
         ref="splide"
@@ -42,15 +42,15 @@ export default defineComponent({
         :has-track="false"
         aria-label="My Favorite Images"
       >
-        <SplideTrack>
+        <SplideTrack class="bg-cloudy lg:rounded-lg py-4">
           <SplideSlide>
             <a href="#">
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark line-clamp-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia beatae, reprehenderit nesciunt veniam, ipsa consectetur ipsum delectus dignissimos rem inventore necessitatibus, labore sequi error dolores maxime asperiores numquam iste eius.</p>
+              <p class="text-center text-[12px] font-thin text-dark line-clamp-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia beatae, reprehenderit nesciunt veniam, ipsa consectetur ipsum delectus dignissimos rem inventore necessitatibus, labore sequi error dolores maxime asperiores numquam iste eius.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -58,9 +58,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/2.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -68,9 +68,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/3.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -78,9 +78,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/4.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -88,9 +88,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/5.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -98,9 +98,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/6.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -108,9 +108,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/7.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -118,9 +118,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/8.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -128,9 +128,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -138,9 +138,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -148,9 +148,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -158,9 +158,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -168,9 +168,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -178,9 +178,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -188,9 +188,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
           <SplideSlide>
@@ -198,9 +198,9 @@ export default defineComponent({
               <img
                 src="../../assets/img/category/1.png"
                 alt="Sample 1"
-                class="w-1/2 rounded-lg overflow-hidden mx-auto"
+                class="w-1/2 lg:w-1/3 rounded-lg overflow-hidden mx-auto"
               >
-              <p class="text-center text-[13px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
+              <p class="text-center text-[12px] font-thin text-dark">Lorem ipsum dolor sit amet.</p>
             </a>
           </SplideSlide>
         </SplideTrack>

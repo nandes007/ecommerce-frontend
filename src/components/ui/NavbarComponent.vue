@@ -27,7 +27,7 @@ watchEffect(() => {
 
 <template>
   <!-- Navbar Start -->
-  <header class="flex w-full bg-white shadow">
+  <header class="fixed flex w-full bg-white shadow z-20">
     <div class="container px-4 lg:px-4 max-w-screen-xl mx-auto relative">
       <!-- Header Start -->
       <ContactComponent />

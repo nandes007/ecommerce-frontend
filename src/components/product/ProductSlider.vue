@@ -24,7 +24,8 @@ export default defineComponent({
         },
         1024: {
           perPage: 6,
-          padding: { left: 1, right: 1 }
+          // padding: { left: 1, right: 1 }
+          padding: { left: 10, right: 10 }
         }
       }
     }
@@ -48,7 +49,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <section class="flex justify-center py-10">
+  <section class="flex justify-center pt-6">
     <div class="container max-w-screen-xl flex justify-center group lg:px-4">
       <Splide
         ref="splide"
@@ -56,15 +57,23 @@ export default defineComponent({
         :has-track="false"
         aria-label="My Favorite Images"
       >
-        <SplideTrack>
+        <div class="flex justify-between bg-cloudy lg:rounded-t-lg pt-4 px-4 font-semibold">
+          <div>
+            <p>Flash Sale</p>
+          </div>
+          <div class="text-danger">
+            <p>This feature is unavailable</p>
+          </div>
+        </div>
+        <SplideTrack class="bg-cloudy lg:rounded-b-lg">
           <SplideSlide
             v-for="product in products"
             :key="product.key"
-            class="py-1"
+            class="py-4 lg:py-4"
           >
             <router-link
               :to="`/products/${product.id}`"
-              class="block rounded-lg overflow-hidden shadow-3xl px-2 relative h-full w-full"
+              class="block rounded-lg bg-white overflow-hidden shadow-3xl px-2 relative h-full w-full"
             >
               <div v-if="product.flag">
                 <span class="absolute bg-danger left-0 text-white px-2 text-[13px] rounded-br">Terlaris</span>

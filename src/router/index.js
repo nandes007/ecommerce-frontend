@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import { storeToRefs } from 'pinia'
-// import { useUserStore } from '../stores/user'
 
 const routes = [
   {
@@ -39,7 +37,8 @@ const routes = [
   },
   {
     path: '/carts',
-    component: () => import('../views/cart/CartPage.vue')
+    component: () => import('../views/cart/CartPage.vue'),
+    meta: { authOnly: true }
   },
   {
     path: '/:pathMatch(.*)*',
@@ -57,31 +56,32 @@ const router = createRouter({
   routes
 })
 
-// const userStore = useUserStore()
-// const { isAuthenticated } = storeToRefs(userStore)
+function isLoggedIn () {
+  return localStorage.getItem('_token')
+}
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.authOnly)) {
-//     if (!isAuthenticated) {
-//       next({
-//         path: '/login',
-//         query: { redirect: to.fullPath }
-//       })
-//     } else {
-//       next()
-//     }
-//   } else if (to.matched.some(record => record.meta.guestOnly)) {
-//     if (isAuthenticated) {
-//       next({
-//         path: '/',
-//         query: { redirect: to.fullPath }
-//       })
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authOnly)) {
+    if (!isLoggedIn) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.guestOnly)) {
+    if (isLoggedIn) {
+      next({
+        path: '/',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

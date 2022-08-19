@@ -45,10 +45,17 @@ watchEffect(() => {
 <template>
   <div>
     <NavbarComponent />
-    <section class="flex justify-center py-10 w-full h-full">
+    <section class="flex justify-center py-10 w-full h-full lg:pt-[120px]">
       <div class="container max-w-screen-xl">
+        <ProductDetailLoading
+          v-if="!imageIsExist"
+          class="pt-7 w-full mx-auto lg:hidden"
+        />
         <div class="flex flex-wrap">
-          <ProductDetailLoading v-if="!imageIsExist" />
+          <ProductDetailLoading
+            v-if="!imageIsExist"
+            class="hidden lg:flex"
+          />
           <div
             v-if="imageIsExist"
             class="w-full lg:w-1/2"
@@ -128,7 +135,7 @@ watchEffect(() => {
             </div>
           </div>
         </div>
-        <div class="py-2 w-full lg:py-10 px-2">
+        <div class="pt-2 pb-16 w-full lg:py-10 px-2">
           <div class="py-2 lg:py-4">
             <h5 class="font-bold">
               Detail Produk

@@ -59,5 +59,25 @@ export const useCartStore = defineStore('cartStore', () => {
     })
   }
 
-  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist }
+  function incrementItemCart (id) {
+    for (let index = 0; index < this.carts[0].items.length; index++) {
+      if (this.carts[0].items[index].productId === id) {
+        this.carts[0].items[index].quantity++
+      }
+    }
+  }
+
+  function decrementItemCart (id) {
+    for (let index = 0; index < this.carts[0].items.length; index++) {
+      if (this.carts[0].items[index].productId === id) {
+        if (this.carts[0].items[index].quantity <= 1) {
+          return 1
+        } else {
+          this.carts[0].items[index].quantity--
+        }
+      }
+    }
+  }
+
+  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, incrementItemCart, decrementItemCart }
 })

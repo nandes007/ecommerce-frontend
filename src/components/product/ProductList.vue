@@ -11,7 +11,7 @@ const { priceFormat } = uiStore
 
 <template>
   <!-- List Product Start -->
-  <section class="flex justify-center">
+  <section class="flex justify-center pt-6">
     <div class="container max-w-screen-xl">
       <div class="flex flex-wrap px-2">
         <div
