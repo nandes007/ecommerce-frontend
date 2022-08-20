@@ -13,5 +13,9 @@ export default {
 
   deleteItem (data) {
     return api().post('/carts/delete', data)
+  },
+
+  updateQty (data) {
+    return api().patch(`${endpoint}/update`, data)
   }
 }

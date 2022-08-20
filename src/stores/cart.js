@@ -59,6 +59,14 @@ export const useCartStore = defineStore('cartStore', () => {
     })
   }
 
+  function updateQuantity (productId, quantity) {
+    uiStore.loading = true
+    const data = { cartId: this.carts[0].id, productId, quantity }
+    return api.updateQty(data).then(() => {
+      uiStore.loading = false
+    })
+  }
+
   function incrementItemCart (id) {
     for (let index = 0; index < this.carts[0].items.length; index++) {
       if (this.carts[0].items[index].productId === id) {
@@ -79,5 +87,5 @@ export const useCartStore = defineStore('cartStore', () => {
     }
   }
 
-  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, incrementItemCart, decrementItemCart }
+  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, updateQuantity, incrementItemCart, decrementItemCart }
 })

@@ -117,6 +117,7 @@ watchEffect(() => {
                     type="text"
                     class="px-2 py-2 font-bold border-b border-secondary text-center w-20 focus:outline-none focus:border-primary"
                     @keypress="uiStore.isNumber($event)"
+                    @input="productStore.inputQty()"
                   >
                   <PrimaryButton
                     :style="'text-xl font-bold flex items-center justify-center w-10'"

@@ -15,7 +15,11 @@ export const useProductStore = defineStore('useProductStore', {
       this.singleProduct.quantity++
     },
     quantityDecrement () {
-      this.singleProduct.quantity--
+      if (this.singleProduct.quantity <= 1) {
+        this.singleProduct.quantity = 1
+      } else {
+        this.singleProduct.quantity--
+      }
     },
     getAllProducts () {
       return api.getProducts().then(response => {

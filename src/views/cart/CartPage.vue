@@ -154,6 +154,7 @@ watchEffect(() => {
                   <input
                     v-model="item.quantity"
                     type="text"
+                    disabled
                     class="px-2 py-2 font-bold border-b border-secondary text-center w-20 focus:outline-none focus:border-primary"
                     @keypress="uiStore.isNumber($event)"
                   >
@@ -163,7 +164,7 @@ watchEffect(() => {
                   >
                     +
                   </PrimaryButton>
-                  <PrimaryButton @click="cartStore.addItemToCart()">
+                  <PrimaryButton @click="cartStore.updateQuantity(item.productId, item.quantity)">
                     Ubah
                   </PrimaryButton>
                 </form>

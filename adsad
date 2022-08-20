@@ -1,0 +1,23 @@
+[33mcommit b97963aaf0c5c1007eff1d0f967207a2bf16076f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Nandes Simanjuntak <nandessimanjuntak1803@gmail.com>
+Date:   Fri Aug 19 23:41:37 2022 +0700
+
+    add cart page - fix ui-1
+
+[33mcommit 04ffcb944e6a476527adc40543eb9abcb0bdc801[m
+Author: Nandes Simanjuntak <nandessimanjuntak1803@gmail.com>
+Date:   Thu Aug 18 23:01:52 2022 +0700
+
+    fix bug cart and add feature some component
+
+[33mcommit e683fe4008d8ffe66ca69be62a79581aa505f0c2[m
+Author: Nandes Simanjuntak <nandessimanjuntak1803@gmail.com>
+Date:   Wed Aug 17 19:38:13 2022 +0700
+
+    add cart feature
+
+[33mcommit d08cefb1894f1922db58c117799beecc037c613d[m
+Author: Nandes Simanjuntak <nandessimanjuntak1803@gmail.com>
+Date:   Sun Aug 7 22:10:44 2022 +0700
+
+    initial commit
