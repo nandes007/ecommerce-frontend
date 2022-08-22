@@ -15,7 +15,7 @@ const props = defineProps({
 
 <template>
   <button
-    class="px-3 py-2 bg-primary rounded-lg font-bold text-white hover:opacity-80 focus:outline-none"
+    class="px-2 py-1 rounded-full font-bold text-primary border-2 border-primary hover:opacity-80 focus:outline-none"
     :type="props.type"
     :class="props.style"
   >

@@ -119,11 +119,13 @@ watchEffect(() => {
               class="px-2 py-2 lg:mx-6 mt-14 lg:mt-0 border-b border-cloudy w-full"
             >
               <div class="flex space-x-4">
-                <img
-                  src="../../assets/img/product/product1.jpg"
-                  alt="Product Image"
-                  class="w-[25%] h-28 lg:h-44 inline"
-                >
+                <router-link :to="{ path: `products/${item.productId}/${item.slug}` }">
+                  <img
+                    src="../../assets/img/product/product1.jpg"
+                    alt="Product Image"
+                    class="w-full h-28 lg:h-44 inline"
+                  >
+                </router-link>
                 <div>
                   <h5 class="line-clamp-2">
                     {{ item.product_name }}
@@ -140,13 +142,13 @@ watchEffect(() => {
                 </div>
               </div>
               <div class="flex justify-end">
-                <form class="flex items-center space-x-1">
+                <form class="flex items-center space-x-2">
                   <DeleteButton
                     :style="'px-2 text-2xl'"
                     @click="deleteItemCart(item.productId)"
                   />
                   <PrimaryButton
-                    :style="'font-bold flex items-center justify-center w-8'"
+                    :style="'font-bold flex items-center justify-center w-6 h-6 lg:w-8 lg:h-8'"
                     @click="cartStore.decrementItemCart(item.productId)"
                   >
                     -
@@ -155,16 +157,19 @@ watchEffect(() => {
                     v-model="item.quantity"
                     type="text"
                     disabled
-                    class="px-2 py-2 font-bold border-b border-secondary text-center w-20 focus:outline-none focus:border-primary"
+                    class="px-2 py-1 lg:py-2 font-bold border-b border-secondary text-center w-12 focus:outline-none focus:border-primary"
                     @keypress="uiStore.isNumber($event)"
                   >
                   <PrimaryButton
-                    :style="'font-bold flex items-center justify-center w-8'"
+                    :style="'font-bold flex items-center justify-center w-6 h-6 lg:w-8 lg:h-8'"
                     @click="cartStore.incrementItemCart(item.productId)"
                   >
                     +
                   </PrimaryButton>
-                  <PrimaryButton @click="cartStore.updateQuantity(item.productId, item.quantity)">
+                  <PrimaryButton
+                    :style="'px-5'"
+                    @click="cartStore.updateQuantity(item.productId, item.quantity)"
+                  >
                     Ubah
                   </PrimaryButton>
                 </form>

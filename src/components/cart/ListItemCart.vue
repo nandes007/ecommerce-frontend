@@ -43,19 +43,24 @@ watchEffect(() => {
             :index="index"
             class="border-t border-cloudy py-1 my-1 flex overflow-hidden space-x-4"
           >
-            <img
-              src="../../assets/img/product/product1.jpg"
-              alt="Product"
-              class="max-w-[80px] max-h-[60px]"
+            <router-link to="/carts">
+              <img
+                src="../../assets/img/product/product1.jpg"
+                alt="Product"
+                class="max-w-[80px] max-h-[60px]"
+              >
+            </router-link>
+            <router-link
+              to="/carts"
+              class="w-1/2"
             >
-            <div class="w-1/2">
               <p class="truncate font-bold text-sm">
                 {{ item.product_name }}
               </p>
               <p class="truncate font-thin text-secondary text-sm leading-3 py-1">
                 {{ priceFormat(item.price) }} x {{ item.quantity }}
               </p>
-            </div>
+            </router-link>
             <div class="w-1/3">
               <h5 class="truncate text-sm py-1">
                 {{ priceFormat(item.price*item.quantity) }}

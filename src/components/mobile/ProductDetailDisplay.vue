@@ -16,7 +16,7 @@ const uiStore = useUiStore()
     <div class="flex py-2 justify-between w-full px-2 items-center">
       <form class="flex items-center space-x-1">
         <PrimaryButton
-          :style="'text-xl font-bold flex items-center justify-center w-10'"
+          :style="'text-xl font-bold flex items-center justify-center w-6 h-6'"
           @click="productStore.quantityDecrement()"
         >
           -
@@ -24,11 +24,11 @@ const uiStore = useUiStore()
         <input
           v-model="productStore.singleProduct.quantity"
           type="text"
-          class="px-2 py-2 font-bold border-b border-secondary text-center w-20 focus:outline-none focus:border-primary"
+          class="px-2 py-1 font-bold border-b border-secondary text-center w-12 focus:outline-none focus:border-primary"
           @keypress="uiStore.isNumber($event)"
         >
         <PrimaryButton
-          :style="'text-xl font-bold flex items-center justify-center w-10'"
+          :style="'text-xl font-bold flex items-center justify-center w-6 h-6'"
           @click="productStore.quantityIncrement()"
         >
           +
