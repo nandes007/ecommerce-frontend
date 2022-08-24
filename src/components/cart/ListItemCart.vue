@@ -45,7 +45,7 @@ watchEffect(() => {
           >
             <router-link to="/carts">
               <img
-                src="../../assets/img/product/product1.jpg"
+                :src="cartStore.getImageInCart(item.productId)"
                 alt="Product"
                 class="max-w-[80px] max-h-[60px]"
               >

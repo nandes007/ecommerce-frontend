@@ -4,6 +4,7 @@ import ProductList from '../components/product/ProductList.vue'
 import NavbarComponent from '../components/ui/NavbarComponent.vue'
 import SpecialProduct from '../components/product/SpecialProduct.vue'
 import ProductSlider from '../components/product/ProductSlider.vue'
+import FooterComponent from '../components/ui/FooterComponent.vue'
 
 </script>
 
@@ -13,4 +14,5 @@ import ProductSlider from '../components/product/ProductSlider.vue'
   <SpecialProduct />
   <ProductSlider />
   <ProductList />
+  <FooterComponent />
 </template>

@@ -121,7 +121,7 @@ watchEffect(() => {
               <div class="flex space-x-4">
                 <router-link :to="{ path: `products/${item.productId}/${item.slug}` }">
                   <img
-                    src="../../assets/img/product/product1.jpg"
+                    :src="cartStore.getImageInCart(item.productId)"
                     alt="Product Image"
                     class="w-full h-28 lg:h-44 inline"
                   >
