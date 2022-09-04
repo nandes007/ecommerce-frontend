@@ -28,7 +28,7 @@ watchEffect(() => {
 <template>
   <!-- Navbar Start -->
   <header class="fixed flex w-full bg-white shadow z-20">
-    <div class="container px-4 lg:px-4 max-w-screen-xl mx-auto relative">
+    <div class="container px-4 lg:px-0 max-w-screen-xl mx-auto relative">
       <!-- Header Start -->
       <ContactComponent />
       <!-- Header End -->
@@ -136,8 +136,9 @@ watchEffect(() => {
             >
               <span class="flex-none w-8 h-8 border border-secondary rounded-full relative overflow-hidden">
                 <img
-                  src="https://source.unsplash.com/60x60?poeple"
+                  src="../../assets/img/profile-pict.svg"
                   alt="Avatar"
+                  class="w-full h-full"
                 >
               </span>
               <p
@@ -149,10 +150,17 @@ watchEffect(() => {
             </router-link>
             <div class="absolute hidden group-hover:flex top-12 right-0 w-72">
               <div class="bg-white border rounded-lg z-20 mt-3 px-4 py-2 w-full shadow-md">
-                <div class="bg-white py-2 px-2 border border-cloudy rounded-lg">
-                  <p class="w-36 truncate">
-                    Lorem ipsum dolor sit amet consectetur
+                <div class="bg-white py-2 px-2 border border-cloudy rounded-lg flex items-center">
+                  <p class="w-3/4 truncate">
+                    {{ user.name }}
                   </p>
+                  <div class="w-1/4">
+                    <img
+                      class="h-12"
+                      src="../../assets/img/profile-pict.svg"
+                      alt="Profile Pict"
+                    >
+                  </div>
                 </div>
                 <ul class="pt-3">
                   <li class="py-1 px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right">
@@ -161,8 +169,13 @@ watchEffect(() => {
                   <li class="py-1 px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right">
                     Wishlist
                   </li>
-                  <li class="py-1 px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right">
-                    Pengaturan
+                  <li class="px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right">
+                    <router-link
+                      to="/users/profile"
+                      class="flex w-full h-full py-1 justify-end"
+                    >
+                      Pengaturan
+                    </router-link>
                   </li>
                   <li
                     class="py-1 px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right"

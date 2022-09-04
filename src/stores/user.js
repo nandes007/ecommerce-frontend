@@ -9,7 +9,14 @@ export const useUserStore = defineStore('userStore', {
     user: {
       name: '',
       email: '',
-      phone_number: ''
+      phone_number: '',
+      gender: '',
+      birth_of_date: '',
+      type: '',
+      province_id: '',
+      city_id: '',
+      address: '',
+      postalcode: ''
     },
     data: {
       name: '',
@@ -35,6 +42,13 @@ export const useUserStore = defineStore('userStore', {
           this.user.name = response.data.data.name
           this.user.email = response.data.data.email
           this.user.phone_number = response.data.data.phone_number
+          this.user.gender = response.data.data.gender
+          this.user.birth_of_date = response.data.data.birth_of_date
+          this.user.type = response.data.data.type
+          this.user.province_id = response.data.data.province_id
+          this.user.city_id = response.data.data.city_id
+          this.user.address = response.data.data.address
+          this.user.postalcode = response.data.data.postalcode
           cartStore.setItemCarts()
         })
       }
@@ -105,6 +119,14 @@ export const useUserStore = defineStore('userStore', {
         this.isAuthenticated = false
         ui.loading = false
         cartStore.carts = []
+      })
+    },
+
+    updateProfile () {
+      const uiStore = useUiStore()
+      uiStore.loading = true
+      return api.updateProfile(this.user).then(() => {
+        uiStore.loading = false
       })
     },
 

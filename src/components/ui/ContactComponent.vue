@@ -1,4 +1,7 @@
 <script setup>
+import { useUserStore } from '../../stores/user'
+
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -108,7 +111,15 @@
     </div>
     <div class="flex items-center bg-primary px-7 py-1 rounded-b-lg relative">
       <div class="font-thin text-sm text-white px-3">
-        <h5>Tambah alamat kamu dulu yuk.</h5>
+        <h5 v-if="userStore.isAuthenticated && userStore.user.address === ''">
+          Tambah alamat kamu dulu yuk
+        </h5>
+        <h5 v-if="userStore.isAuthenticated && userStore.user.address !== ''">
+          Dikirim ke <span class="font-bold">{{ userStore.user.address }}</span>
+        </h5>
+        <h5 v-if="!userStore.isAuthenticated">
+          Masuk dulu yuk untuk isi alamat kamu
+        </h5>
       </div>
       <span class="absolute right-2 text-white">
         <svg
