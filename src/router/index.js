@@ -27,6 +27,10 @@ const routes = [
     props: true
   },
   {
+    path: '/users/profile',
+    component: () => import('../views/user/ProfilePage.vue')
+  },
+  {
     path: '/products/:id/:slug',
     component: () => import('../views/product/ProductDetailPage.vue'),
     props: true

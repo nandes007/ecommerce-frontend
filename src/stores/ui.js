@@ -3,6 +3,9 @@ import { ref } from 'vue'
 import route from '../router'
 
 export const useUiStore = defineStore('uiStore', () => {
+  // Profile State
+  const updateProfileToggle = ref(false)
+  // Profile State End
   const passwordToggle = ref(false)
   const passwordConfirmationToggle = ref(false)
   const loading = ref(false)
@@ -38,5 +41,5 @@ export const useUiStore = defineStore('uiStore', () => {
     return f
   }
 
-  return { passwordToggle, passwordConfirmationToggle, loading, redirectLogin, isNumber, priceFormat }
+  return { passwordToggle, passwordConfirmationToggle, loading, redirectLogin, isNumber, priceFormat, updateProfileToggle }
 })

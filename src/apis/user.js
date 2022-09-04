@@ -37,5 +37,9 @@ export default {
 
   resetPassword (data) {
     return api().post(`${endpoint}/reset-password`, data)
+  },
+
+  updateProfile (data) {
+    return api().put(`${endpoint}/update`, data)
   }
 }

@@ -6,6 +6,7 @@ import { useCartStore } from '../../stores/cart.js'
 import { useUiStore } from '../../stores/ui.js'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import DeleteButton from '../../components/DeleteButton.vue'
+import FooterComponent from '../../components/ui/FooterComponent.vue'
 
 const cartStore = useCartStore()
 const uiStore = useUiStore()
@@ -60,14 +61,21 @@ watchEffect(() => {
               <h4>Total Harga</h4>
               <p>{{ priceFormat(totalPrice) }}</p>
             </div>
-            <button class="w-full bg-primary py-3 font-bold text-2xl rounded-lg text-white">
+            <button
+              v-if="cartStore.carts.length"
+              class="w-full bg-primary py-3 font-bold text-2xl rounded-lg text-white hover:opacity-80"
+              @click="cartStore.checkout()"
+            >
               Beli
             </button>
           </div>
         </div>
-        <div class="flex absolute lg:static w-full top-0 justify-between py-4 px-4 lg:px-0 lg:mx-6 bg-primary lg:bg-white lg:border-b lg:border-secondary">
-          <div class="flex items-center font-bold lg:text-2xl">
-            <span class="flex lg:hidden">
+        <div class="flex fixed lg:static w-full top-0 justify-between py-4 px-4 lg:px-0 lg:mx-6 bg-primary lg:bg-white lg:border-b lg:border-secondary">
+          <div class="flex items-center font-bold space-x-5 lg:space-x-0 lg:text-2xl">
+            <router-link
+              to="/"
+              class="flex lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -80,7 +88,7 @@ watchEffect(() => {
                   clip-rule="evenodd"
                 />
               </svg>
-            </span>
+            </router-link>
             <h5>Keranjang</h5>
           </div>
           <div class="flex lg:hidden">
@@ -121,7 +129,7 @@ watchEffect(() => {
               <div class="flex space-x-4">
                 <router-link :to="{ path: `products/${item.productId}/${item.slug}` }">
                   <img
-                    src="../../assets/img/product/product1.jpg"
+                    :src="cartStore.getImageInCart(item.productId)"
                     alt="Product Image"
                     class="w-full h-28 lg:h-44 inline"
                   >
@@ -179,8 +187,8 @@ watchEffect(() => {
         </div>
       </div>
     </div>
-    <div class="fixed bottom-0 bg-white py-2 w-full flex lg:hidden container border-t border-cloudy justify-between max-w-screen-xl shadow-sm">
-      <div class="flex py-2 justify-between w-full px-2 items-center">
+    <div class="fixed bottom-0 z-10 bg-white py-2 w-full flex lg:hidden container border-t border-cloudy justify-between max-w-screen-xl shadow-sm">
+      <div class="flex justify-between w-full px-2 items-center">
         <div>
           <p class="font-thin text-secondary">
             Total Harga :
@@ -190,11 +198,17 @@ watchEffect(() => {
           </h5>
         </div>
         <div class="flex space-x-4">
-          <button class="px-16 py-2 bg-primary rounded-lg font-bold text-lg text-white">
+          <button
+            v-if="cartStore.carts.length"
+            class="px-16 py-2 bg-primary rounded-lg font-bold text-lg text-white hover:opacity-80"
+            @click="cartStore.checkout()"
+          >
             Beli
           </button>
         </div>
       </div>
     </div>
   </section>
+
+  <FooterComponent class="pb-20 lg:pb-0" />
 </template>

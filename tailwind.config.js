@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         primary: '#14b8a6',
         secondary: '#64748b',
-        cloudy: '#e2e8f0',
+        cloudy: '#cbd5e1',
         danger: '#db2777',
         semidark: '#64748b',
         dark: '#1e293b',
