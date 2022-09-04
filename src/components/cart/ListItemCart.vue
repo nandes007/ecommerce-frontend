@@ -33,8 +33,10 @@ watchEffect(() => {
       </div>
       <div v-if="itemCount.length > 0">
         <div class="flex justify-between items-center">
-          <a href="#">Keranjang ({{ itemCount.length }})</a>
-          <a href="#">Lihat Semua</a>
+          <h1>Keranjang ({{ itemCount.length }})</h1>
+          <router-link to="/carts">
+            Lihat Semua
+          </router-link>
         </div>
         <div v-if="carts.length">
           <div

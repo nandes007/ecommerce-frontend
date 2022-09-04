@@ -12,7 +12,7 @@ const uiStore = useUiStore()
 </script>
 
 <template>
-  <div class="fixed bottom-0 bg-white py-2 w-full flex lg:hidden container border-t border-cloudy justify-between max-w-screen-xl shadow-sm">
+  <div class="fixed bottom-0 bg-white z-20 py-2 w-full flex lg:hidden container border-t border-cloudy justify-between max-w-screen-xl shadow-sm">
     <div class="flex py-2 justify-between w-full px-2 items-center">
       <form class="flex items-center space-x-1">
         <PrimaryButton

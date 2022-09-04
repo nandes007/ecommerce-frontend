@@ -5,14 +5,19 @@ import NavbarComponent from '../components/ui/NavbarComponent.vue'
 import SpecialProduct from '../components/product/SpecialProduct.vue'
 import ProductSlider from '../components/product/ProductSlider.vue'
 import FooterComponent from '../components/ui/FooterComponent.vue'
-
+import MoboleNavComponent from '../components/mobile/MoboleNavComponent.vue'
+import AddressComponent from '../components/mobile/AddressComponent.vue'
 </script>
 
 <template>
-  <NavbarComponent />
-  <SliderComponent />
-  <SpecialProduct />
-  <ProductSlider />
-  <ProductList />
-  <FooterComponent />
+  <div>
+    <NavbarComponent />
+    <AddressComponent />
+    <SliderComponent />
+    <SpecialProduct />
+    <ProductSlider />
+    <ProductList />
+    <FooterComponent />
+    <MoboleNavComponent />
+  </div>
 </template>

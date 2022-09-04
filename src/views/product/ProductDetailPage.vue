@@ -6,8 +6,10 @@ import { useUiStore } from '../../stores/ui.js'
 import FavoriteButton from '../../components/FavoriteButton.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import ProductDetailLoading from '../../components/ui/ProductDetailLoading.vue'
-import NavbarComponent from '../../components/ui/NavbarComponent.vue'
 import ProductDetailDisplay from '../../components/mobile/ProductDetailDisplay.vue'
+import FooterComponent from '../../components/ui/FooterComponent.vue'
+import ProductDetailNavbar from '../../components/product/ProductDetailNavbar.vue'
+import NavbarComponent from '../../components/ui/NavbarComponent.vue'
 
 const productStore = useProductStore()
 const cartStore = useCartStore()
@@ -44,7 +46,8 @@ watchEffect(() => {
 
 <template>
   <div>
-    <NavbarComponent />
+    <ProductDetailNavbar class="lg:hidden" />
+    <NavbarComponent class="hidden lg:flex" />
     <section class="flex justify-center py-10 w-full h-full lg:pt-[120px]">
       <div class="container max-w-screen-xl">
         <ProductDetailLoading
@@ -151,5 +154,7 @@ watchEffect(() => {
       <ProductDetailDisplay />
       <!-- Bottom Nav Mobile Component -->
     </section>
+
+    <FooterComponent />
   </div>
 </template>

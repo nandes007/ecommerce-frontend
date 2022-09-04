@@ -35,7 +35,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <section class="flex justify-center pt-20 lg:pt-[120px] slider">
+  <section class="flex justify-center pt-6 lg:pt-[120px] slider">
     <div class="container max-w-screen-xl flex justify-center group lg:px-4">
       <Splide
         ref="splide"

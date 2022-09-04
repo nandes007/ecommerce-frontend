@@ -94,5 +94,9 @@ export const useCartStore = defineStore('cartStore', () => {
     return productStore.imgUrl + img.product_images[0].path
   }
 
-  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, updateQuantity, incrementItemCart, decrementItemCart, getImageInCart }
+  function checkout () {
+    console.log(this.carts)
+  }
+
+  return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, updateQuantity, incrementItemCart, decrementItemCart, getImageInCart, checkout }
 })
