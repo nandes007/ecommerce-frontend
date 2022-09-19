@@ -3,6 +3,7 @@ import { useUiStore } from './ui'
 import api from '../apis/user'
 import route from '../router'
 import { useCartStore } from './cart'
+import { useRajaongkirStore } from './rajaongkir'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -33,6 +34,29 @@ export const useUserStore = defineStore('userStore', {
     isAuthenticated: false,
     errors: []
   }),
+
+  getters: {
+    provinceName () {
+      const rajaongkirStore = useRajaongkirStore()
+      if (rajaongkirStore.provinces) {
+        const province = rajaongkirStore.provinces.find(e => {
+          return e.province_id === this.user.province_id
+        })
+        return province ? province.province : ''
+      }
+    },
+
+    cityName () {
+      const rajaongkirStore = useRajaongkirStore()
+      if (rajaongkirStore.provinces) {
+        rajaongkirStore.getCities(this.user.province_id)
+        const city = rajaongkirStore.cities.find(e => {
+          return e.city_id === this.user.city_id
+        })
+        return city ? city.city_name : ''
+      }
+    }
+  },
 
   actions: {
     getUser () {
@@ -126,6 +150,8 @@ export const useUserStore = defineStore('userStore', {
       const uiStore = useUiStore()
       uiStore.loading = true
       return api.updateProfile(this.user).then(() => {
+        uiStore.loading = false
+      }).catch(() => {
         uiStore.loading = false
       })
     },

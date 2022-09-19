@@ -45,6 +45,10 @@ const routes = [
     meta: { authOnly: true }
   },
   {
+    path: '/delivery/:cartId',
+    component: () => import('../views/shipping/ShippingPage.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('../views/NotFoundPage.vue')
