@@ -31,7 +31,7 @@ $ npm run dev
 :arrow_right: Vite\
 :arrow_right: Pinia for state management\
 :arrow_right: Vue route for routing\
-:arrow_right: Tailwind css and Postcss for styling\
+:arrow_right: Tailwind css and Postcss for styling
 
 ## Fetures
 
@@ -40,7 +40,7 @@ $ npm run dev
 :green_circle: Authentication Account\
 :green_circle: Add to Cart\
 :green_circle: Add Order\
-:green_circle: Profile Section\
+:green_circle: Profile Section
 
 ## Back-End
 
