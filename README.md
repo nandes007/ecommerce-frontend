@@ -27,20 +27,20 @@ $ npm run dev
 
 # Build using:
 
-:arrow_right: Vuejs 3
-:arrow_right: Vite
-:arrow_right: Pinia for state management
-:arrow_right: Vue route for routing
-:arrow_right: Tailwind css and Postcss for styling
+:arrow_right: Vuejs 3\
+:arrow_right: Vite\
+:arrow_right: Pinia for state management\
+:arrow_right: Vue route for routing\
+:arrow_right: Tailwind css and Postcss for styling\
 
 ## Fetures
 
-:green_circle: Register Account
-:green_circle: Verification Account using Email
-:green_circle: Authentication Account
-:green_circle: Add to Cart
-:green_circle: Add Order
-:green_circle: Profile Section
+:green_circle: Register Account\
+:green_circle: Verification Account using Email\
+:green_circle: Authentication Account\
+:green_circle: Add to Cart\
+:green_circle: Add Order\
+:green_circle: Profile Section\
 
 ## Back-End
 
