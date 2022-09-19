@@ -9,5 +9,9 @@ export default {
 
   cities (provinceId) {
     return api().get(`${endpoint}/cities/${provinceId}`)
+  },
+
+  cost (courier) {
+    return api().get(`${endpoint}/cost/${courier}`)
   }
 }
