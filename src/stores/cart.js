@@ -4,6 +4,7 @@ import api from '../apis/cart'
 import { useProductStore } from './product'
 import { useUserStore } from './user'
 import { useUiStore } from './ui'
+import router from '../router'
 
 export const useCartStore = defineStore('cartStore', () => {
   const productStore = useProductStore()
@@ -95,7 +96,15 @@ export const useCartStore = defineStore('cartStore', () => {
   }
 
   function checkout () {
-    console.log(this.carts)
+    const param = this.carts[0].id
+    if (userStore.user.address === null) {
+      uiStore.addressAlert = true
+      setTimeout(() => {
+        uiStore.addressAlert = false
+      }, 3000)
+    } else {
+      router.push(`/delivery/${param}`)
+    }
   }
 
   return { carts, addItemToCart, setItemCarts, deleteItemCart, cartIsExist, updateQuantity, incrementItemCart, decrementItemCart, getImageInCart, checkout }

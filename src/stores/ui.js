@@ -9,6 +9,8 @@ export const useUiStore = defineStore('uiStore', () => {
   const passwordToggle = ref(false)
   const passwordConfirmationToggle = ref(false)
   const loading = ref(false)
+  const addressAlert = ref(false)
+  const orderAlert = ref(false)
 
   function redirectLogin () {
     route.push('/login')
@@ -41,5 +43,5 @@ export const useUiStore = defineStore('uiStore', () => {
     return f
   }
 
-  return { passwordToggle, passwordConfirmationToggle, loading, redirectLogin, isNumber, priceFormat, updateProfileToggle }
+  return { passwordToggle, passwordConfirmationToggle, loading, redirectLogin, isNumber, priceFormat, updateProfileToggle, addressAlert, orderAlert }
 })

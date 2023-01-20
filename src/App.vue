@@ -5,6 +5,8 @@ import { useProductStore } from './stores/product'
 import { useRajaongkirStore } from './stores/rajaongkir'
 import { onMounted } from 'vue'
 import LoadingComponent from './components/ui/LoadingComponent.vue'
+import AddressAlertComponent from './components/ui/AddressAlertComponent.vue'
+import OrderedSuccessComponent from './components/ui/OrderedSuccessComponent.vue'
 const userStore = useUserStore()
 const categoryStore = useCategoryStore()
 const productStore = useProductStore()
@@ -24,6 +26,10 @@ onMounted(() => {
     <router-view />
 
     <LoadingComponent />
+
+    <AddressAlertComponent />
+
+    <OrderedSuccessComponent />
   </div>
 </template>
 
