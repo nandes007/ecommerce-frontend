@@ -177,6 +177,14 @@ watchEffect(() => {
                       Pengaturan
                     </router-link>
                   </li>
+                  <li class="px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right">
+                    <router-link
+                      to="/admin"
+                      class="flex w-full h-full py-1 justify-end"
+                    >
+                      Admin Menu
+                    </router-link>
+                  </li>
                   <li
                     class="py-1 px-2 hover:bg-cloudy rounded-lg cursor-pointer text-right"
                     @click="logoutUser()"
