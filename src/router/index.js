@@ -6,6 +6,38 @@ const routes = [
     component: () => import('../views/HomePage.vue')
   },
   {
+    path: '/admin',
+    component: () => import('../views/admin/AdminApp.vue'),
+    children: [
+      {
+        path: '',
+        name: 'admin',
+        component: () => import('../views/admin/HomeView.vue')
+      },
+      {
+        path: 'master/categories',
+        name: 'master.category',
+        component: () => import('../views/admin/master/category/ListCategoryView.vue')
+      },
+      {
+        path: 'master/categories/create',
+        name: 'master.category.create',
+        component: () => import('../views/admin/master/category/CreateCategoryView.vue')
+      },
+      {
+        path: 'master/categories/show/:id',
+        name: 'master.category.show',
+        props: true,
+        component: () => import('../views/admin/master/category/ShowCategoryView.vue')
+      },
+      {
+        path: 'master/products',
+        name: 'master.product',
+        component: () => import('../views/admin/master/ProductView.vue')
+      }
+    ]
+  },
+  {
     path: '/login',
     component: () => import('../views/auth/LoginPage.vue')
   },
