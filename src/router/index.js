@@ -31,11 +31,6 @@ const routes = [
         component: () => import('../views/admin/master/category/ShowCategoryView.vue')
       },
       {
-        path: 'master/categories/show',
-        name: 'master.category.edit',
-        component: () => import('../views/admin/master/category/EditCategoryView.vue')
-      },
-      {
         path: 'master/products',
         name: 'master.product',
         component: () => import('../views/admin/master/ProductView.vue')

@@ -1,10 +1,11 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
+import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { useAdminCategoryStore } from '../../../../stores/admin/category'
 
 const parentCategories = ref([])
-const { categoryStateObj, storeCategory } = useAdminCategoryStore()
+const { requestObj, storeCategory } = useAdminCategoryStore()
 
 function searchCategory (keyword, loading) {
   if (keyword.length < 3) return false
@@ -25,6 +26,7 @@ function searchCategory (keyword, loading) {
     <h1 class="text-xl font-bold">
       Create Category
     </h1>
+    <MessageComponent />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, illum?</p>
     </div>
@@ -39,7 +41,7 @@ function searchCategory (keyword, loading) {
             class="text-sm"
           >Category Name</label>
           <input
-            v-model="categoryStateObj.name"
+            v-model="requestObj.name"
             type="text"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           >
@@ -50,7 +52,7 @@ function searchCategory (keyword, loading) {
             class="text-sm"
           >Select Parent Category</label>
           <v-select
-            v-model="categoryStateObj.parentId"
+            v-model="requestObj.parentId"
             class="bg-white rounded-md"
             :filterable="false"
             :options="parentCategories"

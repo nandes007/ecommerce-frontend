@@ -2,10 +2,10 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import { useAdminCategoryStore } from '../../../../stores/admin/category'
+import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 
 const parentCategories = ref([])
-const disabled = ref(true)
-const { getAllCategories, getCategoryById, categoryStateObj } = useAdminCategoryStore()
+const { getAllCategories, getCategoryById, categoryStateObj, updateCategory } = useAdminCategoryStore()
 const param = defineProps({
   id: {
     type: String,
@@ -26,7 +26,7 @@ function searchCategory (keyword, loading) {
 }
 
 function editCategory () {
-  disabled.value = !disabled.value
+  categoryStateObj.disabled = !categoryStateObj.disabled
 }
 
 onMounted(() => {
@@ -41,6 +41,7 @@ onMounted(() => {
     <h1 class="text-xl font-bold">
       Category
     </h1>
+    <MessageComponent />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, illum?</p>
     </div>
@@ -50,7 +51,7 @@ onMounted(() => {
       </div>
       <div class="p-2">
         <div
-          v-if="disabled"
+          v-if="categoryStateObj.disabled"
           class="flex justify-end"
         >
           <button
@@ -61,7 +62,7 @@ onMounted(() => {
           </button>
         </div>
         <div
-          v-if="!disabled"
+          v-if="!categoryStateObj.disabled"
           class="flex justify-end"
         >
           <button
@@ -72,11 +73,11 @@ onMounted(() => {
           </button>
         </div>
         <div
-          v-if="disabled"
+          v-if="categoryStateObj.disabled"
           class="mb-4"
         >
           <h1 class="text-sm text-slate-800">
-            Parent Name : {{ categoryStateObj.parentCategoryName }}
+            Parent Category Name : {{ categoryStateObj.parentCategoryName }}
           </h1>
         </div>
         <div>
@@ -87,12 +88,12 @@ onMounted(() => {
           <input
             v-model="categoryStateObj.name"
             type="text"
-            :disabled="disabled"
+            :disabled="categoryStateObj.disabled"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           >
         </div>
         <div
-          v-if="!disabled"
+          v-if="!categoryStateObj.disabled"
           class="my-2"
         >
           <label
@@ -123,12 +124,12 @@ onMounted(() => {
           </v-select>
         </div>
         <div
-          v-if="!disabled"
+          v-if="!categoryStateObj.disabled"
           class="flex justify-end"
         >
           <button
             class="bg-blue-500 px-4 py-1 rounded text-sm text-white hover:opacity-90"
-            @click="updateCategory()"
+            @click="updateCategory(id)"
           >
             Submit
           </button>

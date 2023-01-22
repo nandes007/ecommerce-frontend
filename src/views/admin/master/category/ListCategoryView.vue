@@ -1,10 +1,13 @@
 <script setup>
+import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { onMounted } from 'vue'
 import { useAdminCategoryStore } from '../../../../stores/admin/category'
 import { usePagination } from '../../../../stores/helper/pagination'
+import { useAdminUiStore } from '../../../../stores/admin/ui'
 
 const adminCategoryStore = useAdminCategoryStore()
 const pagination = usePagination()
+const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   adminCategoryStore.getAllCategories()
@@ -26,6 +29,7 @@ onMounted(() => {
           Create new category
         </router-link>
       </div>
+      <MessageComponent />
       <div class="flex">
         <table class="table-auto border-collapse border border-slate-400 w-full">
           <thead>
@@ -41,7 +45,17 @@ onMounted(() => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-if="uiStateObj.loadLoading">
+            <tr>
+              <td
+                colspan="3"
+                class="border-2 border-slate-400 py-1.5 text-center text-sm font-thin italic"
+              >
+                <p>loading . . .</p>
+              </td>
+            </tr>
+          </tbody>
+          <tbody v-if="!uiStateObj.loadLoading">
             <tr
               v-for="(category, index) in adminCategoryStore.categories"
               :key="category.id"
@@ -72,7 +86,10 @@ onMounted(() => {
                       </svg>
                     </span>
                   </router-link>
-                  <button class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90">
+                  <button
+                    class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
+                    @click="adminCategoryStore.deleteCategory(category.id)"
+                  >
                     Delete
                     <span class="pl-1">
                       <svg
