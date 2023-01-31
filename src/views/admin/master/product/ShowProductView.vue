@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { useAdminProductStore } from '../../../../stores/admin/product'
 
-const { productStateObj, getProductById } = useAdminProductStore()
+const { productStateObj, getProductById, updateProduct } = useAdminProductStore()
 const param = defineProps({
   id: {
     type: String,
@@ -213,7 +213,7 @@ onMounted(() => {
         >
           <button
             class="bg-blue-500 px-4 py-1 rounded text-sm text-white hover:opacity-90"
-            @click="storeProduct()"
+            @click="updateProduct(id)"
           >
             Submit
           </button>

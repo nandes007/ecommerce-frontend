@@ -97,6 +97,58 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       productStateObj.weight = jsonResponse.weight
       productStateObj.tax = jsonResponse.tax
       productStateObj.description = jsonResponse.description
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  function updateProduct (id) {
+    uiStateObj.loading = true
+    const request = {
+      sku: productStateObj.sku,
+      barcode: productStateObj.barcode,
+      product_name: productStateObj.product_name,
+      unit: productStateObj.unit,
+      fraction: productStateObj.fraction,
+      status: productStateObj.status,
+      unitprice: productStateObj.unitprice,
+      price: productStateObj.price,
+      weight: productStateObj.weight,
+      tax: productStateObj.tax,
+      description: productStateObj.description
+    }
+    return api.updateProduct(request, id).then(() => {
+      uiStateObj.loading = false
+      productStateObj.disabled = true
+      productStateObj.successMessage = 'Product has been updated successfully'
+      setTimeout(() => {
+        productStateObj.successMessage = ''
+      }, 4000)
+    }).catch(error => {
+      uiStateObj.loadLoading = false
+      console.log(error)
+    })
+  }
+
+  function deleteProduct (id) {
+    uiStateObj.loading = true
+    return api.deleteProduct(id).then(response => {
+      uiStateObj.loading = false
+      const statusCode = response.data.code
+      if (statusCode === 200) {
+        for (let i = 0; i < products.value.length; i++) {
+          if (products.value[i].id === id) {
+            products.value.splice(i, 1)
+          }
+        }
+      }
+      productStateObj.successMessage = 'Product has been deleted successfully'
+      setTimeout(() => {
+        productStateObj.successMessage = ''
+      }, 4000)
+    }).catch(error => {
+      uiStateObj.loading = false
+      console.log(error)
     })
   }
 
@@ -115,5 +167,5 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     getAllProducts()
   }
 
-  return { getAllProducts, products, openPrevPage, openNextPage, openPage, requestObj, storeProduct, productStateObj, getProductById }
+  return { getAllProducts, products, openPrevPage, openNextPage, openPage, requestObj, storeProduct, productStateObj, getProductById, updateProduct, deleteProduct }
 })

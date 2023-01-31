@@ -7,7 +7,7 @@ import { useAdminUiStore } from '../../../../stores/admin/ui'
 
 // const { getAllProducts, products, openPrevPage, openPage, openNextPage } = useAdminProductStore()
 const adminProductStore = useAdminProductStore()
-const { openNextPage, openPage, openPrevPage, productStateObj } = useAdminProductStore()
+const { openNextPage, openPage, openPrevPage, productStateObj, deleteProduct } = useAdminProductStore()
 const pagination = usePagination()
 const { uiStateObj } = useAdminUiStore()
 
@@ -90,6 +90,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
+                    @click="deleteProduct(product.id)"
                   >
                     Delete
                     <span class="pl-1">
