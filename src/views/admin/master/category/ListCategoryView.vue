@@ -29,7 +29,7 @@ onMounted(() => {
           Create new category
         </router-link>
       </div>
-      <MessageComponent />
+      <MessageComponent :success-message="adminCategoryStore.categoryStateObj.successMessage" />
       <div class="flex">
         <table class="table-auto border-collapse border border-slate-400 w-full">
           <thead>
