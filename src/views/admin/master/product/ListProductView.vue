@@ -12,6 +12,7 @@ const pagination = usePagination()
 const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
+  pagination.stateObj.currentPage = 1
   adminProductStore.getAllProducts()
 })
 </script>

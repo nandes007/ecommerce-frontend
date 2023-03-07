@@ -45,6 +45,22 @@ const routes = [
         name: 'master.product.show',
         props: true,
         component: () => import('../views/admin/master/product/ShowProductView.vue')
+      },
+      {
+        path: 'master/provinces',
+        name: 'master.province',
+        component: () => import('../views/admin/master/province/ListProvinceView.vue')
+      },
+      {
+        path: 'master/provinces/create',
+        name: 'master.province.create',
+        component: () => import('../views/admin/master/province/CreateProvinceView.vue')
+      },
+      {
+        path: 'master/provinces/show/:id',
+        name: 'master.province.show',
+        props: true,
+        component: () => import('../views/admin/master/province/ShowProvinceView.vue')
       }
     ]
   },
