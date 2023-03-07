@@ -5,7 +5,7 @@ import MessageComponent from '../../../../components/ui/admin/MessageComponent.v
 import { useAdminCategoryStore } from '../../../../stores/admin/category'
 
 const parentCategories = ref([])
-const { requestObj, storeCategory } = useAdminCategoryStore()
+const { requestObj, storeCategory, categoryStateObj } = useAdminCategoryStore()
 
 function searchCategory (keyword, loading) {
   if (keyword.length < 3) return false
@@ -26,7 +26,7 @@ function searchCategory (keyword, loading) {
     <h1 class="text-xl font-bold">
       Create Category
     </h1>
-    <MessageComponent />
+    <MessageComponent :success-message="categoryStateObj.successMessage" />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, illum?</p>
     </div>

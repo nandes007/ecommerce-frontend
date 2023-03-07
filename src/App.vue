@@ -3,6 +3,7 @@ import { useUserStore } from './stores/user'
 import { useCategoryStore } from './stores/category'
 import { useProductStore } from './stores/product'
 import { useRajaongkirStore } from './stores/rajaongkir'
+import { usePagination } from './stores/helper/pagination'
 import { onMounted } from 'vue'
 import LoadingComponent from './components/ui/LoadingComponent.vue'
 import LoadingAdminComponent from './components/ui/admin/LoadingAdminComponent.vue'
@@ -12,12 +13,14 @@ const userStore = useUserStore()
 const categoryStore = useCategoryStore()
 const productStore = useProductStore()
 const rajaongkirStore = useRajaongkirStore()
+const pagination = usePagination()
 
 onMounted(() => {
   userStore.checkAuth()
   categoryStore.getAllCategories()
   productStore.getAllProducts()
   rajaongkirStore.getProvinces()
+  pagination.stateObj.currentPage = 1
 })
 
 </script>

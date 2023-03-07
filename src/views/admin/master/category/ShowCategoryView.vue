@@ -41,7 +41,7 @@ onMounted(() => {
     <h1 class="text-xl font-bold">
       Category
     </h1>
-    <MessageComponent />
+    <MessageComponent :success-message="categoryStateObj.successMessage" />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, illum?</p>
     </div>
