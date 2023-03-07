@@ -1,36 +1,38 @@
 <script setup>
 import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { onMounted } from 'vue'
-import { useAdminCategoryStore } from '../../../../stores/admin/category'
+import { useAdminProductStore } from '../../../../stores/admin/product'
 import { usePagination } from '../../../../stores/helper/pagination'
 import { useAdminUiStore } from '../../../../stores/admin/ui'
 
-const adminCategoryStore = useAdminCategoryStore()
+// const { getAllProducts, products, openPrevPage, openPage, openNextPage } = useAdminProductStore()
+const adminProductStore = useAdminProductStore()
+const { openNextPage, openPage, openPrevPage, productStateObj, deleteProduct } = useAdminProductStore()
 const pagination = usePagination()
 const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
-  adminCategoryStore.getAllCategories()
+  adminProductStore.getAllProducts()
 })
 </script>
 
 <template>
   <div>
     <h3 class="text-3xl font-medium text-slate-700">
-      Category
+      Product
     </h3>
 
     <div class="mt-5">
       <div class="flex justify-end p-4">
         <router-link
-          to="/admin/master/categories/create"
+          to="/admin/master/products/create"
           class="bg-green-500 px-2 py-2 rounded text-slate-100 hover:opacity-90"
         >
-          Create new category
+          Create new product
         </router-link>
       </div>
-      <MessageComponent :success-message="adminCategoryStore.categoryStateObj.successMessage" />
+      <MessageComponent :success-message="productStateObj.successMessage" />
       <div class="flex">
         <table class="table-auto border-collapse border border-slate-400 w-full">
           <thead>
@@ -39,7 +41,7 @@ onMounted(() => {
                 #
               </th>
               <th class="border-2 border-slate-400">
-                Category Name
+                Product Name
               </th>
               <th class="border-2 border-slate-400 w-1/5">
                 Action
@@ -58,20 +60,20 @@ onMounted(() => {
           </tbody>
           <tbody v-if="!uiStateObj.loadLoading">
             <tr
-              v-for="(category, index) in adminCategoryStore.categories"
-              :key="category.id"
+              v-for="(product, index) in adminProductStore.products"
+              :key="product.id"
               :index="index"
             >
               <td class="border-2 border-slate-400 py-1.5 text-center">
                 {{ ++index }}
               </td>
               <td class="border-2 border-slate-400 pl-2">
-                {{ category.name }}
+                {{ product.product_name }}
               </td>
               <td class="border-2 border-slate-400">
                 <div class="flex justify-around px-2">
                   <router-link
-                    :to="{ name: 'master.category.show', params: { id: category.id } }"
+                    :to="{ name: 'master.product.show', params: { id: product.id } }"
                     class="flex items-center bg-green-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
                   >
                     Show
@@ -89,7 +91,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
-                    @click="adminCategoryStore.deleteCategory(category.id)"
+                    @click="deleteProduct(product.id)"
                   >
                     Delete
                     <span class="pl-1">
@@ -122,7 +124,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click="adminCategoryStore.openPrevPage()"
+            @click="openPrevPage()"
           >Previous</a>
         </li>
         <li
@@ -136,7 +138,7 @@ onMounted(() => {
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
             :disabled="link == pagination.currentPage"
-            @click.prevent="adminCategoryStore.openPage(link)"
+            @click.prevent="openPage(link)"
           >{{ link }}</a>
           <a
             v-if="link == 0"
@@ -152,7 +154,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click.prevent="adminCategoryStore.openNextPage()"
+            @click.prevent="openNextPage()"
           >Next</a>
         </li>
       </ul>

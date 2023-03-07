@@ -1,12 +1,17 @@
 <script setup>
-import { useAdminCategoryStore } from '../../../stores/admin/category'
+const props = defineProps({
+  successMessage: {
+    required: false,
+    type: String,
+    default: ''
+  }
+})
 
-const { categoryStateObj } = useAdminCategoryStore()
 </script>
 
 <template>
   <div
-    v-if="categoryStateObj.successMessage.length"
+    v-if="props.successMessage.length"
     class="my-4"
   >
     <div class="bg-emerald-300 rounded flex items-center px-2 py-1 space-x-4">
@@ -25,7 +30,7 @@ const { categoryStateObj } = useAdminCategoryStore()
         </svg>
       </span>
       <p class="text-sm font-thin italic">
-        {{ categoryStateObj.successMessage }}
+        {{ props.successMessage }}
       </p>
     </div>
   </div>

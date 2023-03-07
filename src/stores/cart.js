@@ -22,7 +22,9 @@ export const useCartStore = defineStore('cartStore', () => {
     }
 
     const item = {
-      id: productStore.singleProduct.id,
+      product_id: productStore.singleProduct.id,
+      sku: productStore.singleProduct.sku,
+      barcode: productStore.singleProduct.barcode,
       product_name: productStore.singleProduct.product_name,
       slug: productStore.singleProduct.slug,
       price: productStore.singleProduct.price,
@@ -32,24 +34,30 @@ export const useCartStore = defineStore('cartStore', () => {
     }
 
     return api.saveItems(item).then(response => {
-      const res = response.data.data
-      this.carts = res
+      const jsonResponse = response.data.data
+      this.carts = jsonResponse
       uiStore.loading = false
+    }).catch(error => {
+      uiStore.loading = false
+      console.log(error)
     })
   }
 
   function setItemCarts () {
     return api.getItems().then(response => {
-      const res = response.data.data
-      this.carts = res
+      const jsonResponse = response.data.data
+      this.carts = jsonResponse
+    }).catch(error => {
+      console.log(error)
     })
   }
 
   function deleteItemCart (id) {
     uiStore.loading = true
-    const data = { productId: id }
+    const data = { product_id: id, cart_id: this.carts[0].id }
     return api.deleteItem(data).then(response => {
-      if (response.status === 204) {
+      const jsonResponse = response.data
+      if (jsonResponse.code === 200) {
         for (let i = 0; i < this.carts[0].items.length; i++) {
           if (this.carts[0].items[i].productId === id) {
             this.carts[0].items.splice(i, 1)
@@ -57,14 +65,21 @@ export const useCartStore = defineStore('cartStore', () => {
         }
       }
       uiStore.loading = false
+    }).catch(error => {
+      uiStore.loading = false
+      console.log(error)
     })
   }
 
   function updateQuantity (productId, quantity) {
     uiStore.loading = true
-    const data = { cartId: this.carts[0].id, productId, quantity }
-    return api.updateQty(data).then(() => {
+    const data = { cart_id: this.carts[0].id, product_id: productId, quantity }
+    return api.updateQty(data).then(response => {
+      console.log(response)
       uiStore.loading = false
+    }).catch(error => {
+      uiStore.loading = false
+      console.log(error)
     })
   }
 

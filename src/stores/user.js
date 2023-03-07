@@ -4,6 +4,7 @@ import api from '../apis/user'
 import route from '../router'
 import { useCartStore } from './cart'
 import { useRajaongkirStore } from './rajaongkir'
+import { encrypt, password } from '../helper/encrypt'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -100,16 +101,17 @@ export const useUserStore = defineStore('userStore', {
       ui.loading = true
       return api.register(this.data).then(response => {
         ui.loading = false
-        localStorage.setItem('_c_il', `${response.data.data}`)
-        route.push(`/verify/${response.data.data}`)
+        const jsonResponse = response.data.data
+        const email = jsonResponse.email
+        const encrypted = encrypt(email, password)
+        localStorage.setItem('_c_il', encrypted)
+        route.push(`/verify/${encrypted}`)
         this.resetValue()
       }).catch(error => {
         ui.loading = false
-        if (error && error.response.status === 422) {
-          this.errors = error.response.data.errors
-        }
         this.data.password = ''
         this.data.password_confirmation = ''
+        console.log(error)
       })
     },
 

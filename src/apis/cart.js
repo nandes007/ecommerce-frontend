@@ -4,7 +4,7 @@ const endpoint = '/carts'
 
 export default {
   getItems () {
-    return api().get(`${endpoint}/user/cart`)
+    return api().get(`${endpoint}`)
   },
 
   saveItems (data) {

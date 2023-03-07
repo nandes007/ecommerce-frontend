@@ -3,6 +3,7 @@ import api from '../../apis/user'
 import LayoutAuth from '../../components/auth/LayoutAuth.vue'
 import { useUiStore } from '../../stores/ui'
 import { computed, onMounted, reactive, ref, watch, watchEffect } from 'vue'
+import { decrypt, password } from '../../helper/encrypt'
 
 const ui = useUiStore()
 const verify = reactive({
@@ -75,7 +76,9 @@ function onKeydown (val, index) {
 
 function sendCaptcha () {
   ui.loading = true
-  verify.email = localStorage.getItem('_c_il')
+  const emailEncryped = localStorage.getItem('_c_il')
+  const decrypted = decrypt(emailEncryped, password)
+  verify.email = decrypted
   verify.code = ct.value.join('')
   return api.verify(verify).then(() => {
     ui.redirectLogin()
