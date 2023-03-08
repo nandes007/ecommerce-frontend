@@ -46,8 +46,8 @@ onMounted(() => {
               </th>
             </tr>
           </thead>
-          <tbody v-if="uiStateObj.loadLoading">
-            <tr>
+          <tbody>
+            <tr v-if="uiStateObj.loadLoading">
               <td
                 colspan="3"
                 class="border-2 border-slate-400 py-1.5 text-center text-sm font-thin italic"
@@ -55,10 +55,9 @@ onMounted(() => {
                 <p>loading . . .</p>
               </td>
             </tr>
-          </tbody>
-          <tbody v-if="!uiStateObj.loadLoading">
             <tr
               v-for="(category, index) in adminCategoryStore.categories"
+              v-else
               :key="category.id"
               :index="index"
             >
@@ -109,6 +108,14 @@ onMounted(() => {
                     </span>
                   </button>
                 </div>
+              </td>
+            </tr>
+            <tr v-if="!uiStateObj.loadLoading && adminCategoryStore.categories.length < 0">
+              <td
+                colspan="3"
+                class="border-2 border-slate-400 py-1.5 text-sm font-thin italic"
+              >
+                City is empty
               </td>
             </tr>
           </tbody>

@@ -6,11 +6,11 @@ export default {
   },
 
   storeProvince (request) {
-    return api().post('admin/provinces', request)
+    return api().post('/admin/provinces', request)
   },
 
   showProvince (id) {
-    return api().get(`admin/provinces/${id}`)
+    return api().get(`/admin/provinces/${id}`)
   },
 
   updateProvince (id, request) {
