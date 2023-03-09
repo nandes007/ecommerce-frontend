@@ -61,6 +61,22 @@ const routes = [
         name: 'master.province.show',
         props: true,
         component: () => import('../views/admin/master/province/ShowProvinceView.vue')
+      },
+      {
+        path: 'master/cities',
+        name: 'master.cities',
+        component: () => import('../views/admin/master/city/ListCityView.vue')
+      },
+      {
+        path: 'master/cities/create',
+        name: 'master.city.create',
+        component: () => import('../views/admin/master/city/CreateCityView.vue')
+      },
+      {
+        path: 'master/cities/show/:id',
+        name: 'master.city.show',
+        props: true,
+        component: () => import('../views/admin/master/city/ShowCityView.vue')
       }
     ]
   },

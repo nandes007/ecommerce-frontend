@@ -123,6 +123,14 @@
                 Province
               </router-link>
             </li>
+            <li class="flex py-2 w-full text-slate-500">
+              <router-link
+                to="/admin/master/cities"
+                class="pl-16 w-full"
+              >
+                City
+              </router-link>
+            </li>
           </ul>
         </div>
 

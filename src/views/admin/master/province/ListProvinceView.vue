@@ -24,7 +24,7 @@ onMounted(() => {
     <div class="mt-5">
       <div class="flex justify-end p-4">
         <router-link
-          to="/admin/master/province/create"
+          to="/admin/master/provinces/create"
           class="bg-green-500 px-2 py-2 rounded text-slate-100 hover:opacity-90"
         >
           Create new province
@@ -46,8 +46,8 @@ onMounted(() => {
               </th>
             </tr>
           </thead>
-          <tbody v-if="uiStateObj.loadLoading">
-            <tr>
+          <tbody>
+            <tr v-if="uiStateObj.loadLoading">
               <td
                 colspan="3"
                 class="border-2 border-slate-400 py-1.5 text-center text-sm font-thin italic"
@@ -55,10 +55,9 @@ onMounted(() => {
                 <p>loading . . .</p>
               </td>
             </tr>
-          </tbody>
-          <tbody v-if="!uiStateObj.loadLoading">
             <tr
               v-for="(province, index) in adminProvinceStore.provinces"
+              v-else
               :key="province.id"
               :index="index"
             >
@@ -89,7 +88,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
-                    @click="adminProvinceStore.deleteCategory(province.id)"
+                    @click="adminProvinceStore.deleteProvince(province.id)"
                   >
                     Delete
                     <span class="pl-1">
@@ -109,6 +108,14 @@ onMounted(() => {
                     </span>
                   </button>
                 </div>
+              </td>
+            </tr>
+            <tr v-if="!uiStateObj.loadLoading && adminProvinceStore.provinces.length < 0">
+              <td
+                colspan="3"
+                class="border-2 border-slate-400 py-1.5 text-sm font-thin italic"
+              >
+                City is empty
               </td>
             </tr>
           </tbody>
