@@ -25,7 +25,7 @@ const { requestObj, provinceStateObj, storeProvince } = useAdminProvinceStore()
             for="city_name"
             class="text-sm"
           >
-            City Name
+            Province Name
           </label>
           <input
             v-model="requestObj.name"

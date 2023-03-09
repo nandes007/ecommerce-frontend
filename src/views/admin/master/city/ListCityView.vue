@@ -1,38 +1,36 @@
 <script setup>
 import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { onMounted } from 'vue'
-import { useAdminProductStore } from '../../../../stores/admin/product'
+import { useAdminCityStore } from '../../../../stores/admin/city'
 import { usePagination } from '../../../../stores/helper/pagination'
 import { useAdminUiStore } from '../../../../stores/admin/ui'
 
-// const { getAllProducts, products, openPrevPage, openPage, openNextPage } = useAdminProductStore()
-const adminProductStore = useAdminProductStore()
-const { openNextPage, openPage, openPrevPage, productStateObj, deleteProduct } = useAdminProductStore()
+const adminCityStore = useAdminCityStore()
 const pagination = usePagination()
 const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
-  adminProductStore.getAllProducts()
+  adminCityStore.getAllCities()
 })
 </script>
 
 <template>
   <div>
     <h3 class="text-3xl font-medium text-slate-700">
-      Product
+      City
     </h3>
 
     <div class="mt-5">
       <div class="flex justify-end p-4">
         <router-link
-          to="/admin/master/products/create"
+          to="/admin/master/cities/create"
           class="bg-green-500 px-2 py-2 rounded text-slate-100 hover:opacity-90"
         >
-          Create new product
+          Create new city
         </router-link>
       </div>
-      <MessageComponent :success-message="productStateObj.successMessage" />
+      <MessageComponent :success-message="adminCityStore.cityStateObj.successMessage" />
       <div class="flex">
         <table class="table-auto border-collapse border border-slate-400 w-full">
           <thead>
@@ -41,7 +39,7 @@ onMounted(() => {
                 #
               </th>
               <th class="border-2 border-slate-400">
-                Product Name
+                City Name
               </th>
               <th class="border-2 border-slate-400 w-1/5">
                 Action
@@ -58,21 +56,21 @@ onMounted(() => {
               </td>
             </tr>
             <tr
-              v-for="(product, index) in adminProductStore.products"
+              v-for="(city, index) in adminCityStore.cities"
               v-else
-              :key="product.id"
+              :key="city.id"
               :index="index"
             >
               <td class="border-2 border-slate-400 py-1.5 text-center">
                 {{ ++index }}
               </td>
               <td class="border-2 border-slate-400 pl-2">
-                {{ product.product_name }}
+                {{ city.name }}
               </td>
               <td class="border-2 border-slate-400">
                 <div class="flex justify-around px-2">
                   <router-link
-                    :to="{ name: 'master.product.show', params: { id: product.id } }"
+                    :to="{ name: 'master.city.show', params: { id: city.id } }"
                     class="flex items-center bg-green-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
                   >
                     Show
@@ -90,7 +88,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
-                    @click="deleteProduct(product.id)"
+                    @click="adminCityStore.deleteCity(city.id)"
                   >
                     Delete
                     <span class="pl-1">
@@ -112,7 +110,7 @@ onMounted(() => {
                 </div>
               </td>
             </tr>
-            <tr v-if="!uiStateObj.loadLoading && adminProductStore.products.length < 0">
+            <tr v-if="!uiStateObj.loadLoading && adminCityStore.cities.length < 0">
               <td
                 colspan="3"
                 class="border-2 border-slate-400 py-1.5 text-sm font-thin italic"
@@ -131,7 +129,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click="openPrevPage()"
+            @click="adminCityStore.openPrevPage()"
           >Previous</a>
         </li>
         <li
@@ -145,7 +143,7 @@ onMounted(() => {
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
             :disabled="link == pagination.currentPage"
-            @click.prevent="openPage(link)"
+            @click.prevent="adminCityStore.openPage(link)"
           >{{ link }}</a>
           <a
             v-if="link == 0"
@@ -161,7 +159,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click.prevent="openNextPage()"
+            @click.prevent="adminCityStore.openNextPage()"
           >Next</a>
         </li>
       </ul>

@@ -24,7 +24,7 @@ onMounted(() => {
 <template>
   <div>
     <h1 class="text-xl font-bold">
-      Create Product
+      Edit Product
     </h1>
     <MessageComponent :success-message="productStateObj.successMessage" />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
@@ -32,7 +32,7 @@ onMounted(() => {
     </div>
     <div class="border border-slate-400 rounded">
       <div class="bg-slate-300 px-2 py-1 text-xs font-thin">
-        Create Product
+        Edit Product
       </div>
       <div class="p-2">
         <div
@@ -92,6 +92,47 @@ onMounted(() => {
             type="text"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           >
+        </div>
+        <div class="my-2 flex justify-between">
+          <div class="w-1/3 pr-4">
+            <label
+              for="avgcost"
+              class="text-sm"
+            >Avg Cost</label>
+            <input
+              id="avgcost"
+              v-model="productStateObj.unitprice"
+              disabled
+              type="text"
+              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            >
+          </div>
+          <div class="w-1/3 pr-4">
+            <label
+              for="last_cost"
+              class="text-sm"
+            >Last Cost</label>
+            <input
+              id="last_cost"
+              v-model="productStateObj.unitprice"
+              disabled
+              type="text"
+              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            >
+          </div>
+          <div class="w-1/3">
+            <label
+              for="price_old"
+              class="text-sm"
+            >Price Old</label>
+            <input
+              id="last_cost"
+              v-model="productStateObj.price"
+              disabled
+              type="text"
+              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            >
+          </div>
         </div>
         <div class="my-2 flex justify-between">
           <div class="w-1/2 pr-4">
