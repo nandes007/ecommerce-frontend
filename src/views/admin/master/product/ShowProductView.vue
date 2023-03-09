@@ -24,7 +24,7 @@ onMounted(() => {
 <template>
   <div>
     <h1 class="text-xl font-bold">
-      Create Product
+      Edit Product
     </h1>
     <MessageComponent :success-message="productStateObj.successMessage" />
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
@@ -32,7 +32,7 @@ onMounted(() => {
     </div>
     <div class="border border-slate-400 rounded">
       <div class="bg-slate-300 px-2 py-1 text-xs font-thin">
-        Create Product
+        Edit Product
       </div>
       <div class="p-2">
         <div

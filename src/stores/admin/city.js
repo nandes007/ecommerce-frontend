@@ -14,7 +14,7 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
   const cityStateObj = reactive({
     name: '',
     provinceId: '',
-    disable: true,
+    disabled: true,
     successMessage: ''
   })
   const pagination = usePagination()
@@ -63,7 +63,7 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
       cityStateObj.successMessage = 'City has been created successfully'
       setTimeout(() => {
         cityStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       console.log(error)
     })
@@ -79,6 +79,9 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
       uiStateObj.loading = false
       cityStateObj.disable = true
       cityStateObj.successMessage = 'City has been updated successfully'
+      setTimeout(() => {
+        cityStateObj.successMessage = ''
+      }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
       console.log(error)

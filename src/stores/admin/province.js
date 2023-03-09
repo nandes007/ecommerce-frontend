@@ -6,13 +6,14 @@ import { useAdminUiStore } from './ui'
 
 export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => {
   const provinces = ref([])
+  const allProvinces = ref([])
   const province = ref({})
   const requestObj = reactive({
     name: ''
   })
   const provinceStateObj = reactive({
     name: '',
-    disable: true,
+    disabled: true,
     successMessage: ''
   })
   const pagination = usePagination()
@@ -31,6 +32,15 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
       pagination.stateObj.isLastPage = jsonResponse.current_page === jsonResponse.last_page
       pagination.stateObj.totalPages = jsonResponse.last_page
       pagination.generatePages()
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  function getAllProvincesWithoutPagination () {
+    return api.getProvincesWithoutPagination().then(response => {
+      const jsonResponse = response.data
+      allProvinces.value = jsonResponse.data
     }).catch(error => {
       console.log(error)
     })
@@ -58,7 +68,7 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
       provinceStateObj.successMessage = 'Province has been created successfully'
       setTimeout(() => {
         provinceStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       console.log(error)
     })
@@ -73,6 +83,9 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
       uiStateObj.loading = false
       provinceStateObj.disable = true
       provinceStateObj.successMessage = 'Province has been updated successfully'
+      setTimeout(() => {
+        provinceStateObj.successMessage = ''
+      }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
       console.log(error)
@@ -116,5 +129,5 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
     getAllProvinces()
   }
 
-  return { provinces, province, requestObj, provinceStateObj, getAllProvinces, getProvinceById, storeProvince, updateProvince, deleteProvince, openPrevPage, openNextPage, openPage }
+  return { provinces, allProvinces, province, requestObj, provinceStateObj, getAllProvinces, getAllProvincesWithoutPagination, getProvinceById, storeProvince, updateProvince, deleteProvince, openPrevPage, openNextPage, openPage }
 })

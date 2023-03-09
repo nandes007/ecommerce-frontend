@@ -24,7 +24,7 @@ onMounted(() => {
     <div class="mt-5">
       <div class="flex justify-end p-4">
         <router-link
-          to="/admin/master/province/create"
+          to="/admin/master/provinces/create"
           class="bg-green-500 px-2 py-2 rounded text-slate-100 hover:opacity-90"
         >
           Create new province

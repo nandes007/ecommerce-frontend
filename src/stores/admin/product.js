@@ -75,7 +75,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       productStateObj.successMessage = 'Product has been created successfuly'
       setTimeout(() => {
         productStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
       console.log(error)
@@ -123,7 +123,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       productStateObj.successMessage = 'Product has been updated successfully'
       setTimeout(() => {
         productStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       uiStateObj.loadLoading = false
       console.log(error)

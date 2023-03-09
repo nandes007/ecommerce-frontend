@@ -65,7 +65,7 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
       categoryStateObj.successMessage = 'Category has been created successfuly'
       setTimeout(() => {
         categoryStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
       console.log(error)
@@ -84,7 +84,7 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
       categoryStateObj.successMessage = 'Category has been updated successfuly'
       setTimeout(() => {
         categoryStateObj.successMessage = ''
-      }, 4000)
+      }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
       console.log(error)

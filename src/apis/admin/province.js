@@ -5,6 +5,10 @@ export default {
     return api().get('/admin/provinces', { params })
   },
 
+  getProvincesWithoutPagination () {
+    return api().get('/admin/provinces/all')
+  },
+
   storeProvince (request) {
     return api().post('/admin/provinces', request)
   },
