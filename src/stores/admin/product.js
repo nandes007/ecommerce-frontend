@@ -15,7 +15,10 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     unit: '',
     fraction: '',
     status: '',
+    avgcost: 0,
+    lastcost: 0,
     unitprice: 0,
+    price_old: 0,
     price: 0,
     weight: 0,
     tax: 0,
@@ -57,11 +60,13 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
 
   function storeProduct () {
     uiStateObj.loading = true
+    requestObj.avgcost = requestObj.unitprice
+    requestObj.lastcost = requestObj.unitprice
+    requestObj.price_old = requestObj.price
     return api.storeProduct(requestObj).then(response => {
       uiStateObj.loading = false
       const jsonResponse = response.data.data
       products.value.push(jsonResponse)
-      console.log(response)
       requestObj.sku = ''
       requestObj.product_name = ''
       requestObj.unit = ''
@@ -111,7 +116,10 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       unit: productStateObj.unit,
       fraction: productStateObj.fraction,
       status: productStateObj.status,
+      avgcost: productStateObj.unitprice,
+      lastcost: productStateObj.unitprice,
       unitprice: productStateObj.unitprice,
+      price_old: productStateObj.price,
       price: productStateObj.price,
       weight: productStateObj.weight,
       tax: productStateObj.tax,
@@ -125,7 +133,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
         productStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
-      uiStateObj.loadLoading = false
+      uiStateObj.loading = false
       console.log(error)
     })
   }

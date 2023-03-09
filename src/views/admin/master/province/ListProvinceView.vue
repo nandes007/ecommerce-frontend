@@ -88,7 +88,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
-                    @click="adminProvinceStore.deleteCategory(province.id)"
+                    @click="adminProvinceStore.deleteProvince(province.id)"
                   >
                     Delete
                     <span class="pl-1">

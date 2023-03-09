@@ -77,7 +77,7 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
     }
     return api.updateCity(id, request).then(() => {
       uiStateObj.loading = false
-      cityStateObj.disable = true
+      cityStateObj.disabled = true
       cityStateObj.successMessage = 'City has been updated successfully'
       setTimeout(() => {
         cityStateObj.successMessage = ''
@@ -92,11 +92,11 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
     uiStateObj.loading = true
     return api.deleteCity(id).then(response => {
       uiStateObj.loading = false
-      const statusCode = response.data.data
+      const statusCode = response.data.code
       if (statusCode === 200) {
         for (let i = 0; i < cities.value.length; i++) {
           if (cities.value[i].id === id) {
-            cities.value.slice(i, 1)
+            cities.value.splice(i, 1)
           }
         }
       }
@@ -122,6 +122,7 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
 
   function openPage (link) {
     pagination.openPage(link)
+    getAllCities()
   }
 
   return { cities, city, requestObj, cityStateObj, getAllCities, getCityById, storeCity, updateCity, deleteCity, openPrevPage, openNextPage, openPage }

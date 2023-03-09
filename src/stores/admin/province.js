@@ -96,11 +96,11 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
     uiStateObj.loading = true
     return api.deleteProvince(id).then(response => {
       uiStateObj.loading = false
-      const statusCode = response.data.data
+      const statusCode = response.data.code
       if (statusCode === 200) {
         for (let i = 0; i < provinces.value.length; i++) {
           if (provinces.value[i].id === id) {
-            provinces.value.slice(i, 1)
+            provinces.value.splice(i, 1)
           }
         }
       }

@@ -28,13 +28,14 @@ onMounted(() => {
       <div class="p-2">
         <div class="my-2">
           <label
-            for="city_name"
+            for="province_id"
             class="text-sm"
           >
             Province
           </label>
           <select
-            id="province"
+            id="province_id"
+            v-model="requestObj.provinceId"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           >
             <option value="">
@@ -51,12 +52,13 @@ onMounted(() => {
         </div>
         <div class="my-2">
           <label
-            for="city_name"
+            for="province_name"
             class="text-sm"
           >
             City Name
           </label>
           <input
+            id="province_name"
             v-model="requestObj.name"
             type="text"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"

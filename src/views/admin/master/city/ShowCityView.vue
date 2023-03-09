@@ -71,6 +71,8 @@ onMounted(() => {
           </label>
           <select
             id="province"
+            v-model="cityStateObj.provinceId"
+            :disabled="cityStateObj.disabled"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           >
             <option value="">
