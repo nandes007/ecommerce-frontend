@@ -66,8 +66,14 @@ onMounted(() => {
             v-model="productStateObj.sku"
             :disabled="productStateObj.disabled"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.sku ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.sku"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.sku[0] }}
+          </p>
         </div>
         <div class="my-2">
           <label
@@ -78,8 +84,14 @@ onMounted(() => {
             v-model="productStateObj.barcode"
             :disabled="productStateObj.disabled"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.barcode ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.barcode"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.barcode[0] }}
+          </p>
         </div>
         <div class="my-2">
           <label
@@ -90,8 +102,14 @@ onMounted(() => {
             v-model="productStateObj.product_name"
             :disabled="productStateObj.disabled"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.product_name ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.product_name"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.product_name[0] }}
+          </p>
         </div>
         <div class="my-2 flex justify-between">
           <div class="w-1/3 pr-4">
@@ -104,8 +122,14 @@ onMounted(() => {
               v-model="productStateObj.unitprice"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.avgcost ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.avgcost"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.avgcost[0] }}
+            </p>
           </div>
           <div class="w-1/3 pr-4">
             <label
@@ -117,8 +141,14 @@ onMounted(() => {
               v-model="productStateObj.unitprice"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.avgcost ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.lastcost"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.lastcost[0] }}
+            </p>
           </div>
           <div class="w-1/3">
             <label
@@ -126,12 +156,18 @@ onMounted(() => {
               class="text-sm"
             >Price Old</label>
             <input
-              id="last_cost"
+              id="price_old"
               v-model="productStateObj.price"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.price_old ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.price_old"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.price_old[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -144,8 +180,14 @@ onMounted(() => {
               v-model="productStateObj.unit"
               :disabled="productStateObj.disabled"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.unit ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.unit"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.unit[0] }}
+            </p>
           </div>
           <div class="w-1/2">
             <label
@@ -156,8 +198,14 @@ onMounted(() => {
               v-model="productStateObj.fraction"
               :disabled="productStateObj.disabled"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.fraction ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.fraction"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.fraction[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -170,8 +218,14 @@ onMounted(() => {
               v-model="productStateObj.unitprice"
               :disabled="productStateObj.disabled"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.unitprice ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.unitprice"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.unitprice[0] }}
+            </p>
           </div>
           <div class="w-1/2">
             <label
@@ -182,8 +236,14 @@ onMounted(() => {
               v-model="productStateObj.price"
               :disabled="productStateObj.disabled"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.price ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.price"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.price[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -196,8 +256,14 @@ onMounted(() => {
               v-model="productStateObj.weight"
               :disabled="productStateObj.disabled"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.weight ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.weight"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.weight[0] }}
+            </p>
           </div>
           <div class="w-1/3 pr-4">
             <label
@@ -207,7 +273,7 @@ onMounted(() => {
             <select
               v-model="productStateObj.tax"
               :disabled="productStateObj.disabled"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.tax ? 'admin-input-error' : 'admin-input-primary'"
             >
               <option value="1">
                 Y
@@ -216,6 +282,12 @@ onMounted(() => {
                 N
               </option>
             </select>
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.tax"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.tax[0] }}
+            </p>
           </div>
           <div class="w-1/3">
             <label
@@ -225,7 +297,7 @@ onMounted(() => {
             <select
               v-model="productStateObj.status"
               :disabled="productStateObj.disabled"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.status ? 'admin-input-error' : 'admin-input-primary'"
             >
               <option value="active">
                 Active
@@ -234,6 +306,12 @@ onMounted(() => {
                 Inactive
               </option>
             </select>
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.status"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.status[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2">

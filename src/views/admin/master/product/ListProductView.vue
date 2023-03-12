@@ -13,6 +13,8 @@ const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
+  adminProductStore.productStateObj.disabled = true
+  adminProductStore.productStateObj.errors = null
   adminProductStore.getAllProducts()
 })
 </script>

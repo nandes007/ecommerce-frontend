@@ -73,7 +73,7 @@ onMounted(() => {
             id="province"
             v-model="cityStateObj.provinceId"
             :disabled="cityStateObj.disabled"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="cityStateObj.errors && cityStateObj.errors.province_id ? 'admin-input-error' : 'admin-input-primary'"
           >
             <option value="">
               Select Province
@@ -86,6 +86,12 @@ onMounted(() => {
               {{ province.name }}
             </option>
           </select>
+          <p
+            v-if="cityStateObj.errors && cityStateObj.errors.province_id"
+            class="input-error-message"
+          >
+            {{ cityStateObj.errors.province_id[0] }}
+          </p>
         </div>
 
         <div class="my-2">
@@ -96,8 +102,14 @@ onMounted(() => {
             v-model="cityStateObj.name"
             :disabled="cityStateObj.disabled"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="cityStateObj.errors && cityStateObj.errors.name ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="cityStateObj.errors && cityStateObj.errors.name"
+            class="input-error-message"
+          >
+            {{ cityStateObj.errors.name[0] }}
+          </p>
         </div>
         <div
           v-if="!cityStateObj.disabled"

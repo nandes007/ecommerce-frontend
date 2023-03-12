@@ -37,7 +37,8 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     tax: 0,
     description: '',
     successMessage: '',
-    disabled: true
+    disabled: true,
+    errors: null
   })
 
   function getAllProducts () {
@@ -83,7 +84,9 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        productStateObj.errors = error.response.data.errors
+      }
     })
   }
 
@@ -134,7 +137,9 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        productStateObj.errors = error.response.data.errors
+      }
     })
   }
 

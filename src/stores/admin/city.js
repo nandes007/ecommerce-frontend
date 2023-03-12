@@ -15,7 +15,8 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
     name: '',
     provinceId: '',
     disabled: true,
-    successMessage: ''
+    successMessage: '',
+    errors: null
   })
   const pagination = usePagination()
   const { uiStateObj } = useAdminUiStore()
@@ -61,11 +62,15 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
       requestObj.name = ''
       requestObj.provinceId = ''
       cityStateObj.successMessage = 'City has been created successfully'
+      cityStateObj.errors = null
       setTimeout(() => {
         cityStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
-      console.log(error)
+      uiStateObj.loading = false
+      if (error.response.status === 422) {
+        cityStateObj.errors = error.response.data.errors
+      }
     })
   }
 
@@ -79,12 +84,15 @@ export const useAdminCityStore = defineStore('useAdminCityStore', () => {
       uiStateObj.loading = false
       cityStateObj.disabled = true
       cityStateObj.successMessage = 'City has been updated successfully'
+      cityStateObj.errors = null
       setTimeout(() => {
         cityStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        cityStateObj.errors = error.response.data.errors
+      }
     })
   }
 

@@ -11,6 +11,8 @@ const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
+  adminCityStore.cityStateObj.disabled = true
+  adminCityStore.cityStateObj.errors = null
   adminCityStore.getAllCities()
 })
 </script>

@@ -29,8 +29,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
             id="sku"
             v-model="requestObj.sku"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.sku ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.sku"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.sku[0] }}
+          </p>
         </div>
         <div class="my-2">
           <label
@@ -41,8 +47,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
             id="barcode"
             v-model="requestObj.barcode"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.barcode ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.barcode"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.barcode[0] }}
+          </p>
         </div>
         <div class="my-2">
           <label
@@ -53,8 +65,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
             id="product_name"
             v-model="requestObj.product_name"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="productStateObj.errors && productStateObj.errors.product_name ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="productStateObj.errors && productStateObj.errors.product_name"
+            class="input-error-message"
+          >
+            {{ productStateObj.errors.product_name[0] }}
+          </p>
         </div>
         <div class="my-2 flex justify-between">
           <div class="w-1/3 pr-4">
@@ -67,8 +85,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               v-model="requestObj.unitprice"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.avgcost ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.avgcost"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.avgcost[0] }}
+            </p>
           </div>
           <div class="w-1/3 pr-4">
             <label
@@ -80,8 +104,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               v-model="requestObj.unitprice"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.lastcost ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.lastcost"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.lastcost[0] }}
+            </p>
           </div>
           <div class="w-1/3">
             <label
@@ -89,12 +119,18 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               class="text-sm"
             >Price Old</label>
             <input
-              id="last_cost"
+              id="price_old"
               v-model="requestObj.price"
               disabled
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.price_old ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.price_old"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.price_old[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -107,8 +143,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               id="unit"
               v-model="requestObj.unit"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.unit ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.unit"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.unit[0] }}
+            </p>
           </div>
           <div class="w-1/2">
             <label
@@ -119,8 +161,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               id="fraction"
               v-model="requestObj.fraction"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.fraction ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.fraction"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.fraction[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -133,8 +181,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               id="unit_price"
               v-model="requestObj.unitprice"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.unitprice ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.unitprice"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.unitprice[0] }}
+            </p>
           </div>
           <div class="w-1/2">
             <label
@@ -145,8 +199,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               id="sell_price"
               v-model="requestObj.price"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.price ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.price"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.price[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2 flex justify-between">
@@ -159,8 +219,14 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
               id="weight"
               v-model="requestObj.weight"
               type="text"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.weight ? 'admin-input-error' : 'admin-input-primary'"
             >
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.weight"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.weight[0] }}
+            </p>
           </div>
           <div class="w-1/3 pr-4">
             <label
@@ -170,7 +236,7 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
             <select
               id="tax"
               v-model="requestObj.tax"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.tax ? 'admin-input-error' : 'admin-input-primary'"
             >
               <option value="1">
                 Y
@@ -179,6 +245,12 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
                 N
               </option>
             </select>
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.tax"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.tax[0] }}
+            </p>
           </div>
           <div class="w-1/3">
             <label
@@ -188,7 +260,7 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
             <select
               id="status"
               v-model="requestObj.status"
-              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :class="productStateObj.errors && productStateObj.errors.status ? 'admin-input-error' : 'admin-input-primary'"
             >
               <option value="active">
                 Active
@@ -197,6 +269,12 @@ const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
                 Inactive
               </option>
             </select>
+            <p
+              v-if="productStateObj.errors && productStateObj.errors.status"
+              class="input-error-message"
+            >
+              {{ productStateObj.errors.status[0] }}
+            </p>
           </div>
         </div>
         <div class="my-2">
