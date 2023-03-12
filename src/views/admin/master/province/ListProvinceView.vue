@@ -11,6 +11,8 @@ const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
+  adminProvinceStore.provinceStateObj.disabled = true
+  adminProvinceStore.provinceStateObj.errors = null
   adminProvinceStore.getAllProvinces()
 })
 </script>

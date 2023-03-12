@@ -14,7 +14,8 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
   const provinceStateObj = reactive({
     name: '',
     disabled: true,
-    successMessage: ''
+    successMessage: '',
+    errors: null
   })
   const pagination = usePagination()
   const { uiStateObj } = useAdminUiStore()
@@ -66,11 +67,15 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
       provinces.value.push(jsonResponse)
       requestObj.name = ''
       provinceStateObj.successMessage = 'Province has been created successfully'
+      provinceStateObj.errors = null
       setTimeout(() => {
         provinceStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
-      console.log(error)
+      uiStateObj.loading = false
+      if (error.response.status === 422) {
+        provinceStateObj.errors = error.response.data.errors
+      }
     })
   }
 
@@ -83,12 +88,15 @@ export const useAdminProvinceStore = defineStore('useAdminProvinceStore', () => 
       uiStateObj.loading = false
       provinceStateObj.disable = true
       provinceStateObj.successMessage = 'Province has been updated successfully'
+      provinceStateObj.errors = null
       setTimeout(() => {
         provinceStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        provinceStateObj.errors = error.response.data.errors
+      }
     })
   }
 

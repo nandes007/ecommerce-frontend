@@ -67,8 +67,14 @@ onMounted(() => {
             v-model="provinceStateObj.name"
             :disabled="provinceStateObj.disabled"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="provinceStateObj.errors && provinceStateObj.errors.name ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="provinceStateObj.errors && provinceStateObj.errors.name"
+            class="input-error-message"
+          >
+            {{ provinceStateObj.errors.name[0] }}
+          </p>
         </div>
         <div
           v-if="!provinceStateObj.disabled"

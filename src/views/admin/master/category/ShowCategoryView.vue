@@ -93,7 +93,7 @@ onMounted(() => {
           >
           <p
             v-if="categoryStateObj.errors && categoryStateObj.errors.name"
-            class="text-sm font-thin text-pink-600"
+            class="input-error-message"
           >
             {{ categoryStateObj.errors.name[0] }}
           </p>

@@ -19,6 +19,10 @@ body {
         @apply mt-1 px-3 py-1.5 bg-white border shadow-sm border-red-500 placeholder-slate-400 focus:outline-none focus:border-red-400 focus:ring-red-400 block w-full rounded sm:text-sm text-sm focus:ring-1
     }
 
+    .input-error-message {
+        @apply font-thin text-pink-600 text-sm
+    }
+
     .span-required {
         @apply after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm text-slate-700 font-bold;
     }
