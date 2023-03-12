@@ -11,6 +11,8 @@ const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
+  adminCategoryStore.categoryStateObj.errors = null
+  adminCategoryStore.categoryStateObj.disabled = true
   adminCategoryStore.getAllCategories()
 })
 </script>

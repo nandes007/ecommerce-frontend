@@ -1,3 +1,28 @@
+<script setup>
+import { ref, onMounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const isOpen = ref(false)
+const masterDropdown = ref('')
+const activeClass = ref(
+  'bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100'
+)
+const inactiveClass = ref(
+  'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100'
+)
+
+const route = useRoute()
+
+const currentRoute = computed(() => {
+  return route.fullPath
+})
+
+onMounted(() => {
+  const routeSplited = route.fullPath.split('/')
+  routeSplited[2] === 'master' ? masterDropdown.value = true : masterDropdown.value = false
+})
+</script>
+
 <template>
   <div class="flex">
     <!-- Backdrop -->
@@ -33,7 +58,7 @@
               fill="white"
             />
           </svg>
-
+          <!-- {{ $route.fullPath }} -->
           <span class="mx-2 text-2xl font-semibold text-white">Dashboard</span>
         </div>
       </div>
@@ -99,15 +124,21 @@
             :class="masterDropdown ? 'block' : 'hidden'"
             class="w-full"
           >
-            <li class="flex py-2 w-full">
+            <li
+              class="flex py-2 w-full"
+              :class="/^\/admin\/master\/categories\/?(\/\w+)*$/.test(currentRoute) ? 'list-active' : 'list-primary'"
+            >
               <router-link
                 to="/admin/master/categories"
-                class="pl-16 w-full text-slate-500"
+                class="pl-16 w-full"
               >
                 Categories
               </router-link>
             </li>
-            <li class="flex py-2 w-full text-slate-500">
+            <li
+              class="flex py-2 w-full"
+              :class="/^\/admin\/master\/products\/?(\/\w+)*$/.test(currentRoute) ? 'list-active' : 'list-primary'"
+            >
               <router-link
                 to="/admin/master/products"
                 class="pl-16 w-full"
@@ -115,7 +146,10 @@
                 Products
               </router-link>
             </li>
-            <li class="flex py-2 w-full text-slate-500">
+            <li
+              class="flex py-2 w-full"
+              :class="/^\/admin\/master\/provinces\/?(\/\w+)*$/.test(currentRoute) ? 'list-active' : 'list-primary'"
+            >
               <router-link
                 to="/admin/master/provinces"
                 class="pl-16 w-full"
@@ -123,7 +157,10 @@
                 Province
               </router-link>
             </li>
-            <li class="flex py-2 w-full text-slate-500">
+            <li
+              class="flex py-2 w-full"
+              :class="/^\/admin\/master\/cities\/?(\/\w+)*$/.test(currentRoute) ? 'list-active' : 'list-primary'"
+            >
               <router-link
                 to="/admin/master/cities"
                 class="pl-16 w-full"
@@ -279,16 +316,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const isOpen = ref(false)
-const masterDropdown = ref('')
-const activeClass = ref(
-  'bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100'
-)
-const inactiveClass = ref(
-  'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100'
-)
-</script>

@@ -16,11 +16,11 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     parentId: '',
     parentCategoryName: '',
     disabled: true,
-    successMessage: ''
+    successMessage: '',
+    errors: null
   })
   const pagination = usePagination()
   const { uiStateObj } = useAdminUiStore()
-
   function getAllCategories () {
     uiStateObj.loadLoading = true
     const params = {
@@ -59,16 +59,20 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     return api.storeCategory(request).then(response => {
       uiStateObj.loading = false
       const jsonResponse = response.data.data
+      console.log(jsonResponse)
       categories.value.push(jsonResponse)
       requestObj.name = ''
       requestObj.parentId = ''
       categoryStateObj.successMessage = 'Category has been created successfuly'
+      categoryStateObj.errors = null
       setTimeout(() => {
         categoryStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        categoryStateObj.errors = error.response.data.errors
+      }
     })
   }
 
@@ -82,12 +86,15 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
       uiStateObj.loading = false
       categoryStateObj.disabled = true
       categoryStateObj.successMessage = 'Category has been updated successfuly'
+      categoryStateObj.errors = null
       setTimeout(() => {
         categoryStateObj.successMessage = ''
       }, 3000)
     }).catch(error => {
       uiStateObj.loading = false
-      console.log(error)
+      if (error.response.status === 422) {
+        categoryStateObj.errors = error.response.data.errors
+      }
     })
   }
 

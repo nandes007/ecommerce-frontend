@@ -11,12 +11,28 @@ body {
         @apply px-3 py-2 border w-full rounded-full focus:outline-none focus:ring-1 focus:ring-primary focus:border placeholder:italic placeholder:text-secondary block mt-1 text-sm;
     }
 
+    .admin-input-primary {
+        @apply mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1
+    }
+
+    .admin-input-error {
+        @apply mt-1 px-3 py-1.5 bg-white border shadow-sm border-red-500 placeholder-slate-400 focus:outline-none focus:border-red-400 focus:ring-red-400 block w-full rounded sm:text-sm text-sm focus:ring-1
+    }
+
     .span-required {
         @apply after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm text-slate-700 font-bold;
     }
 
     .btn-primary {
         @apply bg-primary py-2 rounded-full font-bold text-white w-full hover:opacity-90;
+    }
+
+    .list-primary {
+        @apply text-slate-500;
+    }
+
+    .list-active {
+        @apply text-white bg-indigo-500;
     }
 }
 

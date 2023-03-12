@@ -43,8 +43,14 @@ function searchCategory (keyword, loading) {
           <input
             v-model="requestObj.name"
             type="text"
-            class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+            :class="categoryStateObj.errors && categoryStateObj.errors.name ? 'admin-input-error' : 'admin-input-primary'"
           >
+          <p
+            v-if="categoryStateObj.errors && categoryStateObj.errors.name"
+            class="text-sm font-thin text-pink-600"
+          >
+            {{ categoryStateObj.errors.name[0] }}
+          </p>
         </div>
         <div class="my-2">
           <label
