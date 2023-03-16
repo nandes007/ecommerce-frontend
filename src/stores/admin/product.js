@@ -69,6 +69,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       const jsonResponse = response.data.data
       products.value.push(jsonResponse)
       requestObj.sku = ''
+      requestObj.barcode = ''
       requestObj.product_name = ''
       requestObj.unit = ''
       requestObj.fraction = ''
@@ -79,6 +80,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       requestObj.tax = ''
       requestObj.description = ''
       productStateObj.successMessage = 'Product has been created successfuly'
+      productStateObj.errors = null
       setTimeout(() => {
         productStateObj.successMessage = ''
       }, 3000)
