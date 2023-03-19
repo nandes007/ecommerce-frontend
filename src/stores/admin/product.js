@@ -22,7 +22,8 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     price: 0,
     weight: 0,
     tax: 0,
-    description: ''
+    description: '',
+    category_ids: []
   })
   const productStateObj = reactive({
     sku: '',
@@ -36,6 +37,7 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     weight: 0,
     tax: 0,
     description: '',
+    category_ids: [],
     successMessage: '',
     disabled: true,
     errors: null
@@ -107,6 +109,8 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       productStateObj.weight = jsonResponse.weight
       productStateObj.tax = jsonResponse.tax
       productStateObj.description = jsonResponse.description
+      productStateObj.category_ids = jsonResponse.categories.map(category => category.id)
+      console.log(productStateObj.category_ids)
     }).catch(error => {
       console.log(error)
     })
@@ -128,7 +132,8 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
       price: productStateObj.price,
       weight: productStateObj.weight,
       tax: productStateObj.tax,
-      description: productStateObj.description
+      description: productStateObj.description,
+      category_ids: productStateObj.category_ids
     }
     return api.updateProduct(request, id).then(() => {
       uiStateObj.loading = false

@@ -6,6 +6,7 @@ import { useAdminUiStore } from './ui'
 
 export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => {
   const categories = ref([])
+  const categoriesDropdown = ref([])
   const category = ref({})
   const requestObj = reactive({
     name: '',
@@ -17,7 +18,9 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     parentCategoryName: '',
     disabled: true,
     successMessage: '',
-    errors: null
+    errors: null,
+    page: 1,
+    canLoadMore: false
   })
   const pagination = usePagination()
   const { uiStateObj } = useAdminUiStore()
@@ -29,6 +32,7 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     return api.getCategories(params).then(response => {
       uiStateObj.loadLoading = false
       const jsonResponse = response.data.data
+      console.log(jsonResponse)
       categories.value = jsonResponse.data
       pagination.stateObj.isFirstPage = jsonResponse.current_page === 1
       pagination.stateObj.isLastPage = jsonResponse.current_page === jsonResponse.last_page
@@ -37,6 +41,39 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     }).catch(error => {
       console.log(error)
     })
+  }
+
+  function getCategoryDropdown () {
+    const params = {
+      page: categoryStateObj.page
+    }
+    return api.getCategories(params).then(response => {
+      const jsonResponse = response.data.data
+      jsonResponse.data.map(m => {
+        const someObject = categoriesDropdown.value.filter(min => {
+          return min.id === m.id
+        })
+
+        if (someObject.length === 0) {
+          categoriesDropdown.value.push(m)
+        }
+      })
+
+      if (jsonResponse.data.length > 0) {
+        categoryStateObj.canLoadMore = true
+        categoryStateObj.page += 1
+      } else {
+        categoryStateObj.canLoadMore = false
+      }
+      console.log(jsonResponse)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  function searchCategoryDropdown () {
+    const searchQuery = event.target.value.toLowerCase()
+    categoriesDropdown.value = categoriesDropdown.value.filter(option => option.label.toLowerCase().includes(searchQuery))
   }
 
   function getCategoryById (id) {
@@ -59,7 +96,6 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     return api.storeCategory(request).then(response => {
       uiStateObj.loading = false
       const jsonResponse = response.data.data
-      console.log(jsonResponse)
       categories.value.push(jsonResponse)
       requestObj.name = ''
       requestObj.parentId = ''
@@ -148,5 +184,5 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     getAllCategories()
   }
 
-  return { categories, category, getAllCategories, getCategoryById, storeCategory, updateCategory, deleteCategory, openPrevPage, openNextPage, openPage, categoryStateObj, getParentCategoryName, requestObj }
+  return { categories, category, requestObj, categoryStateObj, categoriesDropdown, getAllCategories, getCategoryById, storeCategory, updateCategory, deleteCategory, openPrevPage, openNextPage, openPage, getParentCategoryName, getCategoryDropdown, searchCategoryDropdown }
 })

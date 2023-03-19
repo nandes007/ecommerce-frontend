@@ -2,8 +2,10 @@
 import { onMounted } from 'vue'
 import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { useAdminProductStore } from '../../../../stores/admin/product'
+import { useAdminCategoryStore } from '../../../../stores/admin/category'
 
 const { productStateObj, getProductById, updateProduct } = useAdminProductStore()
+const adminCategorystore = useAdminCategoryStore()
 const param = defineProps({
   id: {
     type: String,
@@ -17,6 +19,7 @@ function editProduct () {
 
 onMounted(() => {
   getProductById(param.id)
+  adminCategorystore.getCategoryDropdown()
 })
 
 </script>
@@ -325,6 +328,45 @@ onMounted(() => {
             type="text"
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           />
+        </div>
+        <div class="border border-gray-400 p-2 rounded">
+          <label
+            for="category_name"
+            class="text-sm"
+          >Category</label>
+          <div class="mb-2">
+            <input
+              type="text"
+              placeholder="Search options"
+              class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
+              :disabled="productStateObj.disabled"
+              @input="adminCategorystore.searchCategoryDropdown"
+            >
+          </div>
+          <div class="max-h-40 overflow-y-scroll">
+            <div
+              v-for="option in adminCategorystore.categoriesDropdown"
+              :key="option.value"
+              class="mb-2"
+            >
+              <label class="flex items-center cursor-pointer">
+                <input
+                  v-model="productStateObj.category_ids"
+                  type="checkbox"
+                  :value="option.value"
+                  class="form-checkbox h-4 w-4 text-blue-600"
+                  :disabled="productStateObj.disabled"
+                >
+                <span class="ml-2 text-gray-700">{{ option.label }}</span>
+              </label>
+            </div>
+            <button
+              v-if="adminCategorystore.categoryStateObj.canLoadMore"
+              @click="adminCategorystore.getCategoryDropdown"
+            >
+              Load More
+            </button>
+          </div>
         </div>
         <div
           v-if="!productStateObj.disabled"
