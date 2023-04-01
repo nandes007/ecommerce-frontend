@@ -6,7 +6,11 @@ export default {
   },
 
   storeProduct (request) {
-    return api().post('/admin/products', request)
+    return api().post('/admin/products', request, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   },
 
   showProduct (id) {

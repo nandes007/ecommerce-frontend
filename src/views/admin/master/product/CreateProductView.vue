@@ -4,7 +4,7 @@ import { useAdminProductStore } from '../../../../stores/admin/product'
 import { useAdminCategoryStore } from '../../../../stores/admin/category'
 import { onMounted } from 'vue'
 
-const { requestObj, productStateObj, storeProduct } = useAdminProductStore()
+const { requestObj, productStateObj, storeProduct, previewImages } = useAdminProductStore()
 const adminCategoryStore = useAdminCategoryStore()
 
 onMounted(() => {
@@ -22,7 +22,11 @@ onMounted(() => {
     <div class="border border-slate-400 bg-slate-300 text-xs px-2 py-1.5 font-thin my-4 rounded">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, illum?</p>
     </div>
-    <div class="border border-slate-400 rounded">
+    <form
+      class="border border-slate-400 rounded"
+      enctype="multipart/form-data"
+      @submit.prevent="storeProduct()"
+    >
       <div class="bg-slate-300 px-2 py-1 text-xs font-thin">
         Create Product
       </div>
@@ -296,7 +300,7 @@ onMounted(() => {
             class="mt-1 px-3 py-1.5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-200 focus:ring-sky-200 block w-full rounded sm:text-sm text-sm focus:ring-1"
           />
         </div>
-        <div class="border border-gray-400 p-2 rounded">
+        <div class="border border-gray-400 p-2 rounded my-2">
           <div class="mb-2">
             <input
               type="text"
@@ -326,15 +330,43 @@ onMounted(() => {
             </button>
           </div>
         </div>
+        <div>
+          <label
+            for="description"
+            class="text-sm"
+          >Product Image</label>
+          <div class="py-2">
+            <input
+              ref="fileInput"
+              name="file"
+              type="file"
+              multiple
+              @change="previewImages"
+            >
+          </div>
+          <div class="flex">
+            <div
+              v-for="(image, index) in requestObj.productImagePreviews"
+              :key="index"
+              :index="index"
+              class="flex w-1/4"
+            >
+              <img
+                :src="image"
+                class="pr-2"
+              >
+            </div>
+          </div>
+        </div>
         <div class="flex justify-end mt-4">
           <button
+            type="submit"
             class="bg-blue-500 px-4 py-1 rounded text-sm text-white hover:opacity-90"
-            @click="storeProduct()"
           >
             Submit
           </button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>

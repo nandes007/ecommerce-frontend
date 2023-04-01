@@ -23,7 +23,10 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     weight: 0,
     tax: 0,
     description: '',
-    category_ids: []
+    category_ids: [],
+    productImages: [],
+    productImagePreviews: [],
+    file: ''
   })
   const productStateObj = reactive({
     sku: '',
@@ -42,6 +45,42 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     disabled: true,
     errors: null
   })
+
+  function previewImages (event) {
+    const files = event.target.files
+    requestObj.file = event.target.files[0]
+    requestObj.productImages = event.target.files
+    console.log(requestObj.file)
+
+    // for (let i = 0; i < files.length; i++) {
+    //   const file = files[i]
+    //   const reader = new FileReader()
+
+    //   reader.onload = (e) => {
+    //     requestObj.productImages.push({
+    //       name: file.name,
+    //       data: e.target.result
+    //     })
+    //   }
+
+    //   reader.readAsDataURL(file)
+    //   // requestObj.productImages.push(file)
+    // }
+    // console.log(requestObj.productImages)
+
+    Array.from(files).forEach(file => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        requestObj.productImagePreviews.push(reader.result)
+      }
+    })
+  }
+
+  function addMoreRow () {
+    const newRow = { image: '' }
+    requestObj.productImages.push(newRow)
+  }
 
   function getAllProducts () {
     uiStateObj.loadLoading = true
@@ -66,7 +105,27 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     requestObj.avgcost = requestObj.unitprice
     requestObj.lastcost = requestObj.unitprice
     requestObj.price_old = requestObj.price
-    return api.storeProduct(requestObj).then(response => {
+    const formData = new FormData()
+    formData.append('sku', requestObj.sku)
+    formData.append('barcode', requestObj.barcode)
+    formData.append('product_name', requestObj.product_name)
+    formData.append('unit', requestObj.unit)
+    formData.append('fraction', requestObj.fraction)
+    formData.append('status', requestObj.status)
+    formData.append('avgcost', requestObj.unitprice)
+    formData.append('lastcost', requestObj.unitprice)
+    formData.append('unitprice', requestObj.unitprice)
+    formData.append('price', requestObj.price)
+    formData.append('price_old', requestObj.price)
+    formData.append('weight', requestObj.weight)
+    formData.append('tax', requestObj.tax)
+    formData.append('description', requestObj.description)
+    for (let i = 0; i < requestObj.productImages.length; i++) {
+      formData.append('images[]', requestObj.productImages[i])
+    }
+    formData.append('imgs', requestObj.file)
+    console.log(requestObj.productImages)
+    return api.storeProduct(formData).then(response => {
       uiStateObj.loading = false
       const jsonResponse = response.data.data
       products.value.push(jsonResponse)
@@ -187,5 +246,5 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     getAllProducts()
   }
 
-  return { getAllProducts, products, openPrevPage, openNextPage, openPage, requestObj, storeProduct, productStateObj, getProductById, updateProduct, deleteProduct }
+  return { getAllProducts, products, openPrevPage, openNextPage, openPage, requestObj, storeProduct, productStateObj, getProductById, updateProduct, deleteProduct, previewImages, addMoreRow }
 })
