@@ -335,15 +335,14 @@ onMounted(() => {
             for="description"
             class="text-sm"
           >Product Image</label>
-          <div class="py-2">
-            <input
-              ref="fileInput"
-              name="file"
-              type="file"
-              multiple
-              @change="previewImages"
-            >
-          </div>
+          <input
+            ref="fileInput"
+            name="file"
+            type="file"
+            multiple
+            :class="productStateObj.errors && productStateObj.errors.status ? 'admin-input-error' : 'admin-input-primary'"
+            @change="previewImages"
+          >
           <div class="flex">
             <div
               v-for="(image, index) in requestObj.productImagePreviews"

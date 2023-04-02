@@ -1,38 +1,38 @@
 <script setup>
 import MessageComponent from '../../../../components/ui/admin/MessageComponent.vue'
 import { onMounted } from 'vue'
-import { useAdminCityStore } from '../../../../stores/admin/city'
+import { useAdminBannerStore } from '../../../../stores/admin/banner'
 import { usePagination } from '../../../../stores/helper/pagination'
 import { useAdminUiStore } from '../../../../stores/admin/ui'
 
-const adminCityStore = useAdminCityStore()
+const adminBannerStore = useAdminBannerStore()
 const pagination = usePagination()
 const { uiStateObj } = useAdminUiStore()
 
 onMounted(() => {
   pagination.stateObj.currentPage = 1
-  adminCityStore.cityStateObj.disabled = true
-  adminCityStore.cityStateObj.errors = null
-  adminCityStore.getAllCities()
+  adminBannerStore.bannerStateObj.disabled = true
+  adminBannerStore.bannerStateObj.errors = null
+  adminBannerStore.getAllBanners()
 })
 </script>
 
 <template>
   <div>
     <h3 class="text-3xl font-medium text-slate-700">
-      City
+      Banner
     </h3>
 
     <div class="mt-5">
       <div class="flex justify-end p-4">
         <router-link
-          to="/admin/master/cities/create"
+          to="/admin/master/banners/create"
           class="bg-green-500 px-2 py-2 rounded text-slate-100 hover:opacity-90"
         >
-          Create new city
+          Create new banner
         </router-link>
       </div>
-      <MessageComponent :success-message="adminCityStore.cityStateObj.successMessage" />
+      <MessageComponent :success-message="adminBannerStore.bannerStateObj.successMessage" />
       <div class="flex">
         <table class="table-auto border-collapse border border-slate-400 w-full">
           <thead>
@@ -41,7 +41,19 @@ onMounted(() => {
                 #
               </th>
               <th class="border-2 border-slate-400">
-                City Name
+                User
+              </th>
+              <th class="border-2 border-slate-400">
+                Title
+              </th>
+              <th class="border-2 border-slate-400">
+                URL
+              </th>
+              <th class="border-2 border-slate-400">
+                Status
+              </th>
+              <th class="border-2 border-slate-400">
+                Image
               </th>
               <th class="border-2 border-slate-400 w-1/5">
                 Action
@@ -49,38 +61,71 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-if="!uiStateObj.loadLoading && adminCityStore.cities.length <= 0">
+            <tr v-if="!uiStateObj.loadLoading && adminBannerStore.banners.length <= 0">
               <td
-                colspan="3"
+                colspan="7"
                 class="border-2 border-slate-400 py-1.5 text-sm font-thin italic text-center"
               >
-                City is empty
+                Banner is empty!
               </td>
             </tr>
             <tr v-if="uiStateObj.loadLoading">
               <td
-                colspan="3"
+                colspan="7"
                 class="border-2 border-slate-400 py-1.5 text-center text-sm font-thin italic"
               >
                 <p>loading . . .</p>
               </td>
             </tr>
             <tr
-              v-for="(city, index) in adminCityStore.cities"
+              v-for="(banner, index) in adminBannerStore.banners"
               v-else
-              :key="city.id"
+              :key="banner.id"
               :index="index"
             >
               <td class="border-2 border-slate-400 py-1.5 text-center">
                 {{ ++index }}
               </td>
               <td class="border-2 border-slate-400 pl-2">
-                {{ city.name }}
+                {{ banner.user.name }}
+              </td>
+              <td class="border-2 border-slate-400 pl-2">
+                {{ banner.title }}
+              </td>
+              <td class="border-2 border-slate-400 pl-2">
+                <a
+                  :href="banner.url"
+                  class="flex"
+                  target="_blank"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
+                    <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
+                  </svg>
+
+                  Open link</a>
+              </td>
+              <td class="border-2 border-slate-400 pl-2">
+                {{ banner.status }}
+              </td>
+              <td class="border-2 border-slate-400 pl-2">
+                <div v-if="banner.image_path_url">
+                  <img
+                    :src="banner.image_path_url"
+                    width="80"
+                    height="50"
+                  >
+                </div>
               </td>
               <td class="border-2 border-slate-400">
                 <div class="flex justify-around px-2">
                   <router-link
-                    :to="{ name: 'master.city.show', params: { id: city.id } }"
+                    :to="{ name: 'master.banner.show', params: { id: banner.id } }"
                     class="flex items-center bg-green-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
                   >
                     Show
@@ -98,7 +143,7 @@ onMounted(() => {
                   </router-link>
                   <button
                     class="flex items-center bg-red-500 px-2 py-1 text-sm rounded text-white hover:opacity-90"
-                    @click="adminCityStore.deleteCity(city.id)"
+                    @click="adminBannerStore.deleteBanner(city.id)"
                   >
                     Delete
                     <span class="pl-1">
@@ -131,7 +176,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click="adminCityStore.openPrevPage()"
+            @click="adminBannerStore.openPrevPage()"
           >Previous</a>
         </li>
         <li
@@ -145,7 +190,7 @@ onMounted(() => {
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
             :disabled="link == pagination.currentPage"
-            @click.prevent="adminCityStore.openPage(link)"
+            @click.prevent="adminBannerStore.openPage(link)"
           >{{ link }}</a>
           <a
             v-if="link == 0"
@@ -161,7 +206,7 @@ onMounted(() => {
           <a
             href="#"
             class="page-link border px-2 py-1 border-slate-500"
-            @click.prevent="adminCityStore.openNextPage()"
+            @click.prevent="adminBannerStore.openNextPage()"
           >Next</a>
         </li>
       </ul>

@@ -32,7 +32,6 @@ export const useAdminCategoryStore = defineStore('useAdminCategoryStore', () => 
     return api.getCategories(params).then(response => {
       uiStateObj.loadLoading = false
       const jsonResponse = response.data.data
-      console.log(jsonResponse)
       categories.value = jsonResponse.data
       pagination.stateObj.isFirstPage = jsonResponse.current_page === 1
       pagination.stateObj.isLastPage = jsonResponse.current_page === jsonResponse.last_page

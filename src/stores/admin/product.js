@@ -68,9 +68,9 @@ export const useAdminProductStore = defineStore('useAdminProductStore', () => {
     // }
     // console.log(requestObj.productImages)
 
-    Array.from(files).forEach(file => {
+    Array.from(files).forEach(fl => {
       const reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(fl)
       reader.onload = () => {
         requestObj.productImagePreviews.push(reader.result)
       }

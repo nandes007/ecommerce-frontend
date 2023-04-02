@@ -49,6 +49,14 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
+            <tr v-if="!uiStateObj.loadLoading && adminProvinceStore.provinces.length <= 0">
+              <td
+                colspan="3"
+                class="border-2 border-slate-400 py-1.5 text-sm font-thin italic text-center"
+              >
+                Province is empty
+              </td>
+            </tr>
             <tr v-if="uiStateObj.loadLoading">
               <td
                 colspan="3"
@@ -110,14 +118,6 @@ onMounted(() => {
                     </span>
                   </button>
                 </div>
-              </td>
-            </tr>
-            <tr v-if="!uiStateObj.loadLoading && adminProvinceStore.provinces.length < 0">
-              <td
-                colspan="3"
-                class="border-2 border-slate-400 py-1.5 text-sm font-thin italic"
-              >
-                City is empty
               </td>
             </tr>
           </tbody>

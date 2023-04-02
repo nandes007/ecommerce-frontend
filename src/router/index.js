@@ -77,6 +77,22 @@ const routes = [
         name: 'master.city.show',
         props: true,
         component: () => import('../views/admin/master/city/ShowCityView.vue')
+      },
+      {
+        path: 'master/banners',
+        name: 'master.banners',
+        component: () => import('../views/admin/master/banner/ListBannerView.vue')
+      },
+      {
+        path: 'master/banners/create',
+        name: 'master.banner.create',
+        component: () => import('../views/admin/master/banner/CreateBannerView.vue')
+      },
+      {
+        path: 'master/banners/show/:id',
+        name: 'master.banner.show',
+        props: true,
+        component: () => import('../views/admin/master/banner/ShowBannerView.vue')
       }
     ]
   },

@@ -168,6 +168,17 @@ onMounted(() => {
                 City
               </router-link>
             </li>
+            <li
+              class="flex py-2 w-full"
+              :class="/^\/admin\/master\/banners\/?(\/\w+)*$/.test(currentRoute) ? 'list-active' : 'list-primary'"
+            >
+              <router-link
+                to="/admin/master/banners"
+                class="pl-16 w-full"
+              >
+                Banner
+              </router-link>
+            </li>
           </ul>
         </div>
 
