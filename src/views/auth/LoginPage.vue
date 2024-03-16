@@ -31,6 +31,10 @@ const user = useUserStore()
           action="#"
           @submit.prevent="user.loginUser()"
         >
+          <div class="flex bg-red-600 text-white rounded-full justify-center">
+            {{ user.errorMessage }}
+          </div>
+          
           <PrimaryInput
             :id="'email'"
             v-model="user.form.email"

@@ -31,16 +31,16 @@ export default defineComponent({
     }
 
     const products = ref([
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product11.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product12.jpg', flag: 'Terbaru' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product13.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product14.jpg', flag: 'Terlaris' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product15.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product16.jpg', flag: 'Terlaris' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product17.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product18.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product19.jpg', flag: '' },
-      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/product/product20.jpg', flag: '' }
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: 'Terbaru' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: 'Terlaris' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: 'Terlaris' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' },
+      { id: '001', name: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, aliquid', price: '$10.00', image: './src/assets/img/dummy.png', flag: '' }
     ])
 
     return { options, products }

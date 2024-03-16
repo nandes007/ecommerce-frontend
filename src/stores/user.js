@@ -33,7 +33,8 @@ export const useUserStore = defineStore('userStore', {
       device_name: navigator.userAgent
     },
     isAuthenticated: false,
-    errors: []
+    errors: [],
+    errorMessage: ''
   }),
 
   getters: {
@@ -102,10 +103,7 @@ export const useUserStore = defineStore('userStore', {
       return api.register(this.data).then(response => {
         ui.loading = false
         const jsonResponse = response.data.data
-        const email = jsonResponse.email
-        const encrypted = encrypt(email, password)
-        localStorage.setItem('_c_il', encrypted)
-        route.push(`/verify/${encrypted}`)
+        route.push(`/login`)
         this.resetValue()
       }).catch(error => {
         ui.loading = false
@@ -120,7 +118,7 @@ export const useUserStore = defineStore('userStore', {
       const ui = useUiStore()
       ui.loading = true
       return api.login(this.form).then(response => {
-        localStorage.setItem('_token', response.data.data)
+        localStorage.setItem('_token', response.data.token)
         this.isAuthenticated = true
         this.getUser()
         route.push('/')
@@ -128,10 +126,18 @@ export const useUserStore = defineStore('userStore', {
         this.resetValue()
       }).catch(error => {
         ui.loading = false
-        if (error && error.response.status === 422) {
+        if (error.response.status === 422) {
           this.errors = error.response.data.errors
+        } else if (error.response.status === 400) {
+          this.errorMessage = error.response.data.message;
+        } else {
+          this.errorMessage = "Something went wrong";
         }
         this.form.password = ''
+        setTimeout(() => {
+          this.errors = [];
+          this.errorMessage = '';
+        }, 2000);
       })
     },
 

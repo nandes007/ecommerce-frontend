@@ -49,10 +49,11 @@ export const useProductStore = defineStore('useProductStore', {
     },
 
     isImageExists (product) {
+      console.log(product)
       if (product.product_images.length) {
         return this.imgUrl + product.product_images[0].path
       } else {
-        return './src/assets/img/product/product1.jpg'
+        return './src/assets/img/dummy.png'
       }
     }
   }
