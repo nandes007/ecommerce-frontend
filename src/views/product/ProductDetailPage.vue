@@ -37,7 +37,7 @@ watchEffect(() => {
     setTimeout(() => {
       productStore.getProduct(props.slug)
       images.value = productStore.singleProduct.product_images
-      imageDefault.value = productStore.singleProduct.product_images[0].path
+      imageDefault.value = '../../assets/img/dummy.png'
     }, 2000)
   }
 })
@@ -64,7 +64,7 @@ watchEffect(() => {
             class="w-full lg:w-1/2"
           >
             <img
-              :src="productStore.imgUrl + imageDefault"
+              :src="imageDefault"
               alt="Product Image"
               class="w-1/2 rounded-lg overflow-hidden mx-auto"
             >
