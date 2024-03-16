@@ -51,10 +51,4 @@ function decrypt (transitmessage, pass) {
   return decryptedResult
 }
 
-// const encrypted = encrypt(message, password)
-// const decrypted = decrypt(encrypted, password)
-
-// console.log(encrypted)
-// console.log(decrypted.toString(CryptoJS.enc.Utf8))
-
 export { encrypt, decrypt, password }

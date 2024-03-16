@@ -19,7 +19,6 @@ onMounted(() => {
   userStore.checkAuth()
   categoryStore.getAllCategories()
   productStore.getAllProducts()
-  rajaongkirStore.getProvinces()
   pagination.stateObj.currentPage = 1
 })
 

@@ -75,7 +75,6 @@ export const useCartStore = defineStore('cartStore', () => {
     uiStore.loading = true
     const data = { cart_id: this.carts[0].id, product_id: productId, quantity }
     return api.updateQty(data).then(response => {
-      console.log(response)
       uiStore.loading = false
     }).catch(error => {
       uiStore.loading = false
